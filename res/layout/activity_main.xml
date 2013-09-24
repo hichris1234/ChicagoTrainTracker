@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText,ContentDescription" >
+
+    <ImageButton
+        android:id="@+id/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="144dp"
+        android:onClick="sendMessage"
+        android:src="@drawable/ic_launcher"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/Button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Button"
+        android:layout_toLeftOf="@+id/Button"
+        android:onClick="sendStation"
+        android:src="@drawable/ic_stationlist"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/Button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Button"
+        android:layout_toRightOf="@+id/Button"
+        android:onClick="sendDelay"
+        android:src="@drawable/ic_delay" />
+
+    <ImageButton
+        android:id="@+id/Button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/Button"
+        android:layout_below="@+id/Button"
+        android:onClick="sendTrip"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/ic_tripplanner" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/Button2"
+        android:layout_below="@+id/Button"
+        android:onClick="sendNearest"
+        android:layout_marginRight="33dp"
+        android:src="@drawable/ic_neareststations" />
+         
+</RelativeLayout>

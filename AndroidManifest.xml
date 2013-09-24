@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dev.chicagotraintracker"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.dev.chicagotraintracker.MainActivity"
+            android:label="@string/app_name"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.SettingsActivity"
+            android:label="Settings"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.StationList"
+            android:label="Station List"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.Screenmap"
+            android:label="Screen Map"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.Delay"
+            android:label="Delays"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.Tripplanner"
+            android:label="Trip Planner"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.Neareststations"
+            android:label="Nearest Stations"
+            android:noHistory="true"
+            android:parentActivityName="com.dev.chicagotraintracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.dev.chicagotraintracker.TestStation"
+            android:label="@string/title_activity_test_station"
+            android:parentActivityName="com.dev.chicagotraintracker.StationList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.chicagotraintracker.StationList" />
+        </activity>
+    </application>
+
+</manifest>

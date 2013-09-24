@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chicago Train Tracker</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_screenmap">Screenmap</string>
+    <string name="button">Button</string>
+    <string name="title_activity_station_list">StationList</string>
+    <string name="title_activity_delay">Delay</string>
+    <string name="title_activity_tripplanner">Tripplanner</string>
+    <string name="title_activity_neareststations">Neareststations</string>
+    <string name="title_activity_my_result_receiver">MyResultReceiver</string>
+    <string name="line">Line:</string>
+    <string name="station">Station:</string>
+
+    <string-array name="Lines">
+        <item>Red Line</item>
+        <item>Blue Line</item>
+        <item>Orange Line</item>
+        <item>Green Line</item>
+        <item>Brown Line</item>
+        <item>Purple Line</item>
+        <item>Purple Express Line</item>
+        <item>Pink Line</item>
+        <item>Yellow Line</item>
+    </string-array>
+
+    <string name="Check">Check Station Status</string>
+
+    <string-array name="newArray">
+        <item>Station 1</item>
+        <item>Station 2</item>
+        <item>Station 3</item>
+        <item>Station 4</item>
+        <item>Station 5</item>
+        <item>Station 6</item>
+        <item>Station 7</item>
+    </string-array>
+
+    <string name="title_activity_test_station">TestStation</string>
+
+</resources>
