@@ -41,6 +41,10 @@ public class TestStation extends Activity {
     TextView tv3 = (TextView) findViewById(R.id.tv3);
     TextView tv4 = (TextView) findViewById(R.id.tv4);
     TextView tv5 = (TextView) findViewById(R.id.tv5);
+    TextView tv6 = (TextView) findViewById(R.id.tv6);
+    TextView tv7 = (TextView) findViewById(R.id.tv7);
+    TextView tv8 = (TextView) findViewById(R.id.tv8);
+    TextView tv9 = (TextView) findViewById(R.id.tv9);
     		 
 	try {
 	    doc = Jsoup.connect(URL).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();

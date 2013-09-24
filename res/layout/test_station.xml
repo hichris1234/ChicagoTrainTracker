@@ -55,4 +55,40 @@
         android:layout_toRightOf="@+id/tv4"
         android:textSize="24dp" />
 
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/tv4"
+        android:layout_below="@+id/tv4"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/tv5"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv4"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv8"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv6"
+        android:layout_toLeftOf="@+id/tv7"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv7"
+        android:layout_toRightOf="@+id/tv8"
+        android:textSize="24dp" />
+
 </RelativeLayout>

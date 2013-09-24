@@ -34,8 +34,8 @@ public final class R {
         public static final int Button3=0x7f090003;
         public static final int button1=0x7f090008;
         public static final int imageButton1=0x7f090004;
-        public static final int item1=0x7f090011;
-        public static final int menu_settings=0x7f090010;
+        public static final int item1=0x7f090015;
+        public static final int menu_settings=0x7f090014;
         public static final int spinner1=0x7f090007;
         public static final int spinner2=0x7f090009;
         public static final int textView1=0x7f090005;
@@ -46,6 +46,10 @@ public final class R {
         public static final int tv3=0x7f09000d;
         public static final int tv4=0x7f09000e;
         public static final int tv5=0x7f09000f;
+        public static final int tv6=0x7f090010;
+        public static final int tv7=0x7f090011;
+        public static final int tv8=0x7f090012;
+        public static final int tv9=0x7f090013;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
