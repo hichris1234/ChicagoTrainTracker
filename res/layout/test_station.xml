@@ -7,144 +7,263 @@
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_gravity="fill"
         android:layout_marginLeft="150dp"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
     
     <TextView
         android:id="@+id/tv1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_marginRight="150dp"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/tv1"
         android:layout_below="@+id/tv"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tv"
         android:layout_toRightOf="@+id/tv2"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tv3"
         android:layout_toLeftOf="@+id/tv3"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv5"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tv2"
         android:layout_toRightOf="@+id/tv4"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv6"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/tv4"
         android:layout_below="@+id/tv4"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv7"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignLeft="@+id/tv5"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tv4"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv8"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tv6"
         android:layout_toLeftOf="@+id/tv7"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv9"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tv7"
         android:layout_toRightOf="@+id/tv8"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv10"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/tv8"
         android:layout_below="@+id/tv8"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv11"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignBaseline="@+id/tv10"
         android:layout_alignBottom="@+id/tv10"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/tv10"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv12"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/tv10"
         android:layout_below="@+id/tv10"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv13"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignBaseline="@+id/tv12"
         android:layout_alignBottom="@+id/tv12"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/tv12"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv14"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tv12"
         android:layout_toLeftOf="@+id/tv13"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/tv15"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_alignBaseline="@+id/tv14"
         android:layout_alignBottom="@+id/tv14"
         android:layout_toRightOf="@+id/tv14"
-        android:textSize="24dp" />
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv16"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv14"
+        android:layout_toLeftOf="@+id/tv15"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv17"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignBaseline="@+id/tv16"
+        android:layout_alignBottom="@+id/tv16"
+        android:layout_alignLeft="@+id/tv15"
+        android:layout_alignParentRight="true"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv18"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/tv16"
+        android:layout_below="@+id/tv16"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv19"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tv16"
+        android:layout_toRightOf="@+id/tv16"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv20"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/tv18"
+        android:layout_below="@+id/tv18"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv21"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignBaseline="@+id/tv20"
+        android:layout_alignBottom="@+id/tv20"
+        android:layout_toRightOf="@+id/tv20"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv22"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/tv20"
+        android:layout_below="@+id/tv20"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv23"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@+id/tv21"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv21"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv24"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/tv22"
+        android:layout_below="@+id/tv22"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv25"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tv22"
+        android:layout_toRightOf="@+id/tv22"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv26"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/tv24"
+        android:layout_below="@+id/tv24"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv27"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tv24"
+        android:layout_toRightOf="@+id/tv24"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv28"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tv26"
+        android:layout_toLeftOf="@+id/tv27"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv29"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@+id/tv27"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv27"
+        android:textSize="17dp" />
 
 </RelativeLayout>

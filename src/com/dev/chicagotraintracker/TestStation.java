@@ -51,6 +51,20 @@ public class TestStation extends Activity {
     TextView tv13 = (TextView) findViewById(R.id.tv13);
     TextView tv14 = (TextView) findViewById(R.id.tv14);
     TextView tv15 = (TextView) findViewById(R.id.tv15);
+    TextView tv16 = (TextView) findViewById(R.id.tv16);
+    TextView tv17 = (TextView) findViewById(R.id.tv17);
+    TextView tv18 = (TextView) findViewById(R.id.tv18);
+    TextView tv19 = (TextView) findViewById(R.id.tv19);
+    TextView tv20 = (TextView) findViewById(R.id.tv20);
+    TextView tv21 = (TextView) findViewById(R.id.tv21);
+    TextView tv22 = (TextView) findViewById(R.id.tv22);
+    TextView tv23 = (TextView) findViewById(R.id.tv23);
+    TextView tv24 = (TextView) findViewById(R.id.tv24);
+    TextView tv25 = (TextView) findViewById(R.id.tv25);
+    TextView tv26 = (TextView) findViewById(R.id.tv26);
+    TextView tv27 = (TextView) findViewById(R.id.tv27);
+    TextView tv28 = (TextView) findViewById(R.id.tv28);
+    TextView tv29 = (TextView) findViewById(R.id.tv29);
 
     		 
 	try {
@@ -134,6 +148,70 @@ public class TestStation extends Activity {
     String DestNm7 = destNm7.text();
     tv14.setText(String.valueOf (DestNm7));
     
+    while(iterator.hasNext())
+	{ Element div8 = iterator.next();
+
+    Elements arrT8 = div8.select("arrT");
+    Elements prdt8 = div8.select("prdt");
+    Elements destNm8 = div8.select("destNm");
+    String DestNm8 = destNm8.text();
+    tv16.setText(String.valueOf (DestNm8));
+    
+    while(iterator.hasNext())
+	{ Element div9 = iterator.next();
+
+    Elements arrT9 = div9.select("arrT");
+    Elements prdt9 = div9.select("prdt");
+    Elements destNm9 = div9.select("destNm");
+    String DestNm9 = destNm9.text();
+    tv18.setText(String.valueOf (DestNm9));
+    
+    while(iterator.hasNext())
+	{ Element div10 = iterator.next();
+
+    Elements arrT10 = div10.select("arrT");
+    Elements prdt10 = div10.select("prdt");
+    Elements destNm10 = div10.select("destNm");
+    String DestNm10 = destNm10.text();
+    tv20.setText(String.valueOf (DestNm10));
+    
+    while(iterator.hasNext())
+	{ Element div11 = iterator.next();
+
+    Elements arrT11 = div11.select("arrT");
+    Elements prdt11 = div11.select("prdt");
+    Elements destNm11 = div11.select("destNm");
+    String DestNm11 = destNm11.text();
+    tv22.setText(String.valueOf (DestNm11));
+    
+    while(iterator.hasNext())
+	{ Element div12 = iterator.next();
+
+    Elements arrT12 = div12.select("arrT");
+    Elements prdt12 = div12.select("prdt");
+    Elements destNm12 = div12.select("destNm");
+    String DestNm12 = destNm12.text();
+    tv24.setText(String.valueOf (DestNm12));
+    
+    while(iterator.hasNext())
+	{ Element div13 = iterator.next();
+
+    Elements arrT13 = div13.select("arrT");
+    Elements prdt13 = div13.select("prdt");
+    Elements destNm13 = div13.select("destNm");
+    String DestNm13 = destNm13.text();
+    tv26.setText(String.valueOf (DestNm13));
+    
+    while(iterator.hasNext())
+	{ Element div14 = iterator.next();
+
+    Elements arrT14 = div14.select("arrT");
+    Elements prdt14 = div14.select("prdt");
+    Elements destNm14 = div14.select("destNm");
+    String DestNm14 = destNm14.text();
+    tv28.setText(String.valueOf (DestNm14));
+    
+    
     
     
     
@@ -157,6 +235,20 @@ public class TestStation extends Activity {
 		Date date14 = sdf.parse(prdt6.text());
 		Date date15 = sdf.parse(arrT7.text());
 		Date date16 = sdf.parse(prdt7.text());
+		Date date17 = sdf.parse(arrT8.text());
+		Date date18 = sdf.parse(prdt8.text());
+		Date date19 = sdf.parse(arrT9.text());
+		Date date20 = sdf.parse(prdt9.text());
+		Date date21 = sdf.parse(arrT10.text());
+		Date date22 = sdf.parse(prdt10.text());
+		Date date23 = sdf.parse(arrT11.text());
+		Date date24 = sdf.parse(prdt11.text());
+		Date date25 = sdf.parse(arrT12.text());
+		Date date26 = sdf.parse(prdt12.text());
+		Date date27 = sdf.parse(arrT13.text());
+		Date date28 = sdf.parse(prdt13.text());
+		Date date29 = sdf.parse(arrT14.text());
+		Date date30 = sdf.parse(prdt14.text());
 		
 		long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
 		long dateDiff1 = (date3.getTime() - date4.getTime())>0 ? (date3.getTime() - date4.getTime()) :(date4.getTime() - date3.getTime());
@@ -166,6 +258,14 @@ public class TestStation extends Activity {
 		long dateDiff5 = (date11.getTime() - date12.getTime())>0 ? (date11.getTime() - date12.getTime()) :(date12.getTime() - date11.getTime());
 		long dateDiff6 = (date13.getTime() - date14.getTime())>0 ? (date13.getTime() - date14.getTime()) :(date14.getTime() - date13.getTime());
 		long dateDiff7 = (date15.getTime() - date16.getTime())>0 ? (date15.getTime() - date16.getTime()) :(date16.getTime() - date15.getTime());
+		long dateDiff8 = (date17.getTime() - date18.getTime())>0 ? (date17.getTime() - date18.getTime()) :(date18.getTime() - date17.getTime());
+		long dateDiff9 = (date19.getTime() - date20.getTime())>0 ? (date19.getTime() - date20.getTime()) :(date20.getTime() - date19.getTime());
+		long dateDiff10 = (date21.getTime() - date22.getTime())>0 ? (date21.getTime() - date22.getTime()) :(date22.getTime() - date21.getTime());
+		long dateDiff11 = (date23.getTime() - date24.getTime())>0 ? (date23.getTime() - date24.getTime()) :(date24.getTime() - date23.getTime());
+		long dateDiff12 = (date25.getTime() - date26.getTime())>0 ? (date25.getTime() - date26.getTime()) :(date26.getTime() - date25.getTime());
+		long dateDiff13 = (date27.getTime() - date28.getTime())>0 ? (date27.getTime() - date28.getTime()) :(date28.getTime() - date27.getTime());
+		long dateDiff14 = (date29.getTime() - date30.getTime())>0 ? (date29.getTime() - date30.getTime()) :(date30.getTime() - date29.getTime());
+		
 	    SimpleDateFormat sdf1 = new SimpleDateFormat("mm:00");
 	    String dateDif = sdf1.format(dateDiff);
 	    String dateDif1 = sdf1.format(dateDiff1);
@@ -175,6 +275,14 @@ public class TestStation extends Activity {
 	    String dateDif5 = sdf1.format(dateDiff5);
 	    String dateDif6 = sdf1.format(dateDiff6);
 	    String dateDif7 = sdf1.format(dateDiff7);
+	    String dateDif8 = sdf1.format(dateDiff8);
+	    String dateDif9 = sdf1.format(dateDiff9);
+	    String dateDif10 = sdf1.format(dateDiff10);
+	    String dateDif11 = sdf1.format(dateDiff11);
+	    String dateDif12 = sdf1.format(dateDiff12);
+	    String dateDif13 = sdf1.format(dateDiff13);
+	    String dateDif14 = sdf1.format(dateDiff14);
+	    
 	    tv.setText(String.valueOf (dateDif));
 	    tv3.setText(String.valueOf (dateDif1));
 	    tv5.setText(String.valueOf (dateDif2));
@@ -183,6 +291,13 @@ public class TestStation extends Activity {
 	    tv11.setText(String.valueOf (dateDif5));
 	    tv13.setText(String.valueOf (dateDif6));
 	    tv15.setText(String.valueOf (dateDif7));
+	    tv17.setText(String.valueOf (dateDif8));
+	    tv19.setText(String.valueOf (dateDif9));
+	    tv21.setText(String.valueOf (dateDif10));
+	    tv23.setText(String.valueOf (dateDif11));
+	    tv25.setText(String.valueOf (dateDif12));
+	    tv27.setText(String.valueOf (dateDif13));
+	    tv29.setText(String.valueOf (dateDif14));
 
 	    
 	    }
@@ -195,6 +310,13 @@ public class TestStation extends Activity {
 		
 	 }
     
+	}
+	}
+	}
+	}
+	}
+	}
+	}
 	}
 	}
 	}
