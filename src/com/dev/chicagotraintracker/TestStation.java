@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 import org.jsoup.Jsoup;
@@ -23,6 +24,7 @@ import android.support.v4.app.NavUtils;
 
 public class TestStation extends Activity {
 	String URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid=40380";
+	private Elements elem;
     @SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,28 +54,36 @@ public class TestStation extends Activity {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	Elements elem = doc.select("eta");
-    for (Element div : elem) {
+	Elements elem = doc.select("eta"); 
+	Iterator<Element> iterator = elem.iterator();
+	while(iterator.hasNext())
+	{ Element div = iterator.next();
     	
-	}Elements elemn = doc.select("eta"); for (Element div : elem) {
     Elements arrT = div.select("arrT");
     Elements prdt = div.select("prdt");
     Elements staNm = div.select("staNm");
     String StaNm = staNm.text();
     tv1.setText(String.valueOf (StaNm));
-    
-    
-	Elements elem1 = doc.select("eta");
-    for (Element div1 : elem1) {
+      
+
+	while(iterator.hasNext())
+	{ Element div1 = iterator.next();
     	
-	}Elements elemn1 = doc.select("eta"); for (Element div1 : elem1) {
     Elements arrT1 = div1.select("arrT");
     Elements prdt1 = div1.select("prdt");
     Elements staNm1 = div1.select("staNm");
     String StaNm1 = staNm1.text();
     tv2.setText(String.valueOf (StaNm1));
-
-
+    
+    while(iterator.hasNext())
+	{ Element div2 = iterator.next();
+    	
+    Elements arrT2 = div2.select("arrT");
+    Elements prdt2 = div2.select("prdt");
+    Elements staNm2 = div2.select("staNm");
+    String StaNm2 = staNm2.text();
+    tv4.setText(String.valueOf (StaNm2));
+    
 
     try {
     	
@@ -82,14 +92,19 @@ public class TestStation extends Activity {
 		Date date2 = sdf.parse(prdt.text());
 		Date date3 = sdf.parse(arrT1.text());
 		Date date4 = sdf.parse(prdt1.text());
+		Date date5 = sdf.parse(arrT2.text());
+		Date date6 = sdf.parse(prdt2.text());
 		
 		long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
 		long dateDiff1 = (date3.getTime() - date4.getTime())>0 ? (date3.getTime() - date4.getTime()) :(date4.getTime() - date3.getTime());
+		long dateDiff2 = (date5.getTime() - date6.getTime())>0 ? (date5.getTime() - date6.getTime()) :(date6.getTime() - date5.getTime());
 	    SimpleDateFormat sdf1 = new SimpleDateFormat("mm:00");
 	    String dateDif = sdf1.format(dateDiff);
 	    String dateDif1 = sdf1.format(dateDiff1);
+	    String dateDif2 = sdf1.format(dateDiff2);
 	    tv.setText(String.valueOf (dateDif));
 	    tv3.setText(String.valueOf (dateDif1));
+	    tv5.setText(String.valueOf (dateDif2));
 
 	    
 	    }
@@ -102,6 +117,7 @@ public class TestStation extends Activity {
 		
 	 }
     
+	}
 	}
 	}
     }
