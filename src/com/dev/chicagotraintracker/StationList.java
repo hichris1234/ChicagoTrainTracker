@@ -49,6 +49,7 @@ public class StationList extends Activity {
         Intent Intent9 = new Intent(StationList.this, TestStation.class);
         startActivityForResult(Intent9, 0); 
         setContentView(R.layout.test_station);}
+    
 
    
    

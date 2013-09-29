@@ -13,22 +13,70 @@
     <string name="title_activity_my_result_receiver">MyResultReceiver</string>
     <string name="line">Line:</string>
     <string name="station">Station:</string>
-
-    <string-array name="Lines">
+    <string name="Brown">Brn</string>
+    <string name="Green">G</string>
+    <string name="Purple">P</string>   
+    <string name="Pink">Pink</string> 
+    <string name="Yellow">Y</string>
+    <string name="Orange">Org</string>
+    <string name="Red">Red</string>
+    <string name="Blue">Blue</string>
+    <string name="Red_Line">Red Line</string>
+    <string name="Blue_Line">Blue Line</string>
+    <string name="Orange_Line">Orange Line</string>
+    <string name="Green_Line">Green Line</string>
+    <string name="Brown_Line">Brown Line</string>
+    <string name="Purple_Line">Purple Line</string>
+    <string name="Pink_Line">Pink Line</string>
+    <string name="Yellow_Line">Yellow Line</string>
+    
+    
+     <string-array name="Lines">
         <item>Red Line</item>
         <item>Blue Line</item>
         <item>Orange Line</item>
         <item>Green Line</item>
         <item>Brown Line</item>
         <item>Purple Line</item>
-        <item>Purple Express Line</item>
         <item>Pink Line</item>
         <item>Yellow Line</item>
     </string-array>
 
-    <string name="Check">Check Station Status</string>
-
-    <string-array name="newArray">
+    <string-array name="Red_Line">
+        <item>Red Line</item>
+        <item>Blue Line</item>
+        <item>Orange Line</item>
+        <item>Green Line</item>
+        <item>Brown Line</item>
+        <item>Purple Line</item>
+        <item>Pink Line</item>
+        <item>Yellow Line</item>
+    </string-array>
+    
+    <string-array name="Blue_Line">
+        <item>Red Line</item>
+        <item>Blue Line</item>
+        <item>Orange Line</item>
+        <item>Green Line</item>
+        <item>Brown Line</item>
+        <item>Purple Line</item>
+        <item>Pink Line</item>
+        <item>Yellow Line</item>
+    </string-array>
+ 
+    
+    <string-array name="Orange_Line">
+        <item>Red Line</item>
+        <item>Blue Line</item>
+        <item>Orange Line</item>
+        <item>Green Line</item>
+        <item>Brown Line</item>
+        <item>Purple Line</item>
+        <item>Pink Line</item>
+        <item>Yellow Line</item>
+    </string-array>
+    
+    <string-array name="Green_Line">
         <item>Station 1</item>
         <item>Station 2</item>
         <item>Station 3</item>
@@ -37,7 +85,51 @@
         <item>Station 6</item>
         <item>Station 7</item>
     </string-array>
+    
+    <string-array name="Brown_Line">
+        <item>Station 1</item>
+        <item>Station 2</item>
+        <item>Station 3</item>
+        <item>Station 4</item>
+        <item>Station 5</item>
+        <item>Station 6</item>
+        <item>Station 7</item>
+    </string-array>
+    
+    <string-array name="Purple_Line">
+        <item>Station 1</item>
+        <item>Station 2</item>
+        <item>Station 3</item>
+        <item>Station 4</item>
+        <item>Station 5</item>
+        <item>Station 6</item>
+        <item>Station 7</item>
+    </string-array>
+    
+    <string-array name="Pink_Line">
+        <item>Station 1</item>
+        <item>Station 2</item>
+        <item>Station 3</item>
+        <item>Station 4</item>
+        <item>Station 5</item>
+        <item>Station 6</item>
+        <item>Station 7</item>
+    </string-array>
+    
+    <string-array name="Yellow_Line">
+        <item>Station 1</item>
+        <item>Station 2</item>
+        <item>Station 3</item>
+        <item>Station 4</item>
+        <item>Station 5</item>
+        <item>Station 6</item>
+        <item>Station 7</item>
+    </string-array>
+    
 
+    <string name="Check">Check Station Status</string>
+
+    
     <string name="title_activity_test_station">TestStation</string>
 
 </resources>

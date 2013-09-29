@@ -5,24 +5,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import android.R.string;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
 public class TestStation extends Activity {
+	 
 	String URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid=40380";
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,29 @@ public class TestStation extends Activity {
     TextView tv27 = (TextView) findViewById(R.id.tv27);
     TextView tv28 = (TextView) findViewById(R.id.tv28);
     TextView tv29 = (TextView) findViewById(R.id.tv29);
+    ImageView iv = (ImageView) findViewById(R.id.imageView);
+    ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
+    ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
+    ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
+    ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
+    ImageView iv5 = (ImageView) findViewById(R.id.imageView5);
+    ImageView iv6 = (ImageView) findViewById(R.id.imageView6);
+    ImageView iv7 = (ImageView) findViewById(R.id.imageView7);
+    ImageView iv8 = (ImageView) findViewById(R.id.imageView8);
+    ImageView iv9 = (ImageView) findViewById(R.id.imageView9);
+    ImageView iv10 = (ImageView) findViewById(R.id.imageView10);
+    ImageView iv11 = (ImageView) findViewById(R.id.imageView11);
+    ImageView iv12 = (ImageView) findViewById(R.id.imageView12);
+    ImageView iv13 = (ImageView) findViewById(R.id.imageView13);
+    ImageView iv14 = (ImageView) findViewById(R.id.imageView14);
+    String Red = this.getString(R.string.Red);
+    String Blue = this.getString(R.string.Blue);
+    String Green = this.getString(R.string.Green);
+    String Brown = this.getString(R.string.Brown);
+    String Purple = this.getString(R.string.Purple);
+    String Orange = this.getString(R.string.Orange);
+    String Yellow = this.getString(R.string.Yellow);
+    String Pink = this.getString(R.string.Pink);
 
     		 
 	try {
@@ -81,7 +104,9 @@ public class TestStation extends Activity {
     Elements arrT = div.select("arrT");
     Elements prdt = div.select("prdt");
     Elements destNm = div.select("destNm");
+    Elements rt = div.select("rt");
     String DestNm = destNm.text();
+    String Rt = rt.text();
     tv1.setText(String.valueOf (DestNm));
       
 
@@ -91,7 +116,9 @@ public class TestStation extends Activity {
     Elements arrT1 = div1.select("arrT");
     Elements prdt1 = div1.select("prdt");
     Elements destNm1 = div1.select("destNm");
+    Elements rt1 = div1.select("rt");
     String DestNm1 = destNm1.text();
+    String Rt1 = rt1.text();
     tv2.setText(String.valueOf (DestNm1));
     
     while(iterator.hasNext())
@@ -100,7 +127,9 @@ public class TestStation extends Activity {
     Elements arrT2 = div2.select("arrT");
     Elements prdt2 = div2.select("prdt");
     Elements destNm2 = div2.select("destNm");
+    Elements rt2 = div2.select("rt");
     String DestNm2 = destNm2.text();
+    String Rt2 = rt2.text();
     tv4.setText(String.valueOf (DestNm2));
     
     while(iterator.hasNext())
@@ -109,7 +138,9 @@ public class TestStation extends Activity {
     Elements arrT3 = div3.select("arrT");
     Elements prdt3 = div3.select("prdt");
     Elements destNm3 = div3.select("destNm");
+    Elements rt3 = div3.select("rt");
     String DestNm3 = destNm3.text();
+    String Rt3 = rt3.text();
     tv6.setText(String.valueOf (DestNm3));
     
     while(iterator.hasNext())
@@ -118,7 +149,9 @@ public class TestStation extends Activity {
     Elements arrT4 = div4.select("arrT");
     Elements prdt4 = div4.select("prdt");
     Elements destNm4 = div4.select("destNm");
+    Elements rt4 = div4.select("rt");
     String DestNm4 = destNm4.text();
+    String Rt4 = rt4.text();
     tv8.setText(String.valueOf (DestNm4));
     
     while(iterator.hasNext())
@@ -127,7 +160,9 @@ public class TestStation extends Activity {
     Elements arrT5 = div5.select("arrT");
     Elements prdt5 = div5.select("prdt");
     Elements destNm5 = div5.select("destNm");
+    Elements rt5 = div5.select("rt");
     String DestNm5 = destNm5.text();
+    String Rt5 = rt5.text();
     tv10.setText(String.valueOf (DestNm5));
     
     while(iterator.hasNext())
@@ -136,7 +171,9 @@ public class TestStation extends Activity {
     Elements arrT6 = div6.select("arrT");
     Elements prdt6 = div6.select("prdt");
     Elements destNm6 = div6.select("destNm");
+    Elements rt6 = div6.select("rt");
     String DestNm6 = destNm6.text();
+    String Rt6 = rt6.text();
     tv12.setText(String.valueOf (DestNm6));
     
     while(iterator.hasNext())
@@ -145,7 +182,9 @@ public class TestStation extends Activity {
     Elements arrT7 = div7.select("arrT");
     Elements prdt7 = div7.select("prdt");
     Elements destNm7 = div7.select("destNm");
+    Elements rt7 = div7.select("rt");
     String DestNm7 = destNm7.text();
+    String Rt7 = rt7.text();
     tv14.setText(String.valueOf (DestNm7));
     
     while(iterator.hasNext())
@@ -154,7 +193,9 @@ public class TestStation extends Activity {
     Elements arrT8 = div8.select("arrT");
     Elements prdt8 = div8.select("prdt");
     Elements destNm8 = div8.select("destNm");
+    Elements rt8 = div8.select("rt");
     String DestNm8 = destNm8.text();
+    String Rt8 = rt8.text();
     tv16.setText(String.valueOf (DestNm8));
     
     while(iterator.hasNext())
@@ -163,7 +204,9 @@ public class TestStation extends Activity {
     Elements arrT9 = div9.select("arrT");
     Elements prdt9 = div9.select("prdt");
     Elements destNm9 = div9.select("destNm");
+    Elements rt9 = div9.select("rt");
     String DestNm9 = destNm9.text();
+    String Rt9 = rt9.text();
     tv18.setText(String.valueOf (DestNm9));
     
     while(iterator.hasNext())
@@ -172,7 +215,9 @@ public class TestStation extends Activity {
     Elements arrT10 = div10.select("arrT");
     Elements prdt10 = div10.select("prdt");
     Elements destNm10 = div10.select("destNm");
+    Elements rt10 = div10.select("rt");
     String DestNm10 = destNm10.text();
+    String Rt10 = rt10.text();
     tv20.setText(String.valueOf (DestNm10));
     
     while(iterator.hasNext())
@@ -181,7 +226,9 @@ public class TestStation extends Activity {
     Elements arrT11 = div11.select("arrT");
     Elements prdt11 = div11.select("prdt");
     Elements destNm11 = div11.select("destNm");
+    Elements rt11 = div11.select("rt");
     String DestNm11 = destNm11.text();
+    String Rt11 = rt11.text();
     tv22.setText(String.valueOf (DestNm11));
     
     while(iterator.hasNext())
@@ -190,7 +237,9 @@ public class TestStation extends Activity {
     Elements arrT12 = div12.select("arrT");
     Elements prdt12 = div12.select("prdt");
     Elements destNm12 = div12.select("destNm");
+    Elements rt12 = div12.select("rt");
     String DestNm12 = destNm12.text();
+    String Rt12 = rt12.text();
     tv24.setText(String.valueOf (DestNm12));
     
     while(iterator.hasNext())
@@ -199,7 +248,9 @@ public class TestStation extends Activity {
     Elements arrT13 = div13.select("arrT");
     Elements prdt13 = div13.select("prdt");
     Elements destNm13 = div13.select("destNm");
+    Elements rt13 = div13.select("rt");
     String DestNm13 = destNm13.text();
+    String Rt13 = rt13.text();
     tv26.setText(String.valueOf (DestNm13));
     
     while(iterator.hasNext())
@@ -208,12 +259,388 @@ public class TestStation extends Activity {
     Elements arrT14 = div14.select("arrT");
     Elements prdt14 = div14.select("prdt");
     Elements destNm14 = div14.select("destNm");
+    Elements rt14 = div14.select("rt");
     String DestNm14 = destNm14.text();
+    String Rt14 = rt14.text();
     tv28.setText(String.valueOf (DestNm14));
     
+
     
     
+    if(Rt.equals(Red)){
+    iv.setImageResource(R.drawable.red);
+    }
+    if(Rt.equals(Blue)){
+    iv.setImageResource(R.drawable.blue);
+	}
+    if(Rt.equals(Orange)){
+    iv.setImageResource(R.drawable.orange);
+	}
+    if(Rt.equals(Green)){
+    iv.setImageResource(R.drawable.green);
+	}
+    if(Rt.equals(Yellow)){
+    iv.setImageResource(R.drawable.yellow);
+	}
+    if(Rt.equals(Purple)){
+    iv.setImageResource(R.drawable.purple);
+	}
+    if(Rt.equals(Pink)){
+    iv.setImageResource(R.drawable.pink);
+	}
+    if(Rt.equals(Brown)){
+    iv.setImageResource(R.drawable.brown);
+	}
     
+    if(Rt1.equals(Red)){
+        iv1.setImageResource(R.drawable.red);
+        }
+        if(Rt1.equals(Blue)){
+        iv1.setImageResource(R.drawable.blue);
+    	}
+        if(Rt1.equals(Orange)){
+        iv1.setImageResource(R.drawable.orange);
+    	}
+        if(Rt1.equals(Green)){
+        iv1.setImageResource(R.drawable.green);
+    	}
+        if(Rt1.equals(Yellow)){
+        iv1.setImageResource(R.drawable.yellow);
+    	}
+        if(Rt1.equals(Purple)){
+        iv1.setImageResource(R.drawable.purple);
+    	}
+        if(Rt1.equals(Pink)){
+        iv1.setImageResource(R.drawable.pink);
+    	}
+        if(Rt1.equals(Brown)){
+        iv1.setImageResource(R.drawable.brown);
+    	}
+    
+    if(Rt2.equals(Red)){
+            iv2.setImageResource(R.drawable.red);
+            }
+            if(Rt2.equals(Blue)){
+            iv2.setImageResource(R.drawable.blue);
+        	}
+            if(Rt2.equals(Orange)){
+            iv2.setImageResource(R.drawable.orange);
+        	}
+            if(Rt2.equals(Green)){
+            iv2.setImageResource(R.drawable.green);
+        	}
+            if(Rt2.equals(Yellow)){
+            iv2.setImageResource(R.drawable.yellow);
+        	}
+            if(Rt2.equals(Purple)){
+            iv2.setImageResource(R.drawable.purple);
+        	}
+            if(Rt2.equals(Pink)){
+            iv2.setImageResource(R.drawable.pink);
+        	}
+            if(Rt2.equals(Brown)){
+            iv2.setImageResource(R.drawable.brown);
+        	}
+    
+    if(Rt3.equals(Red)){
+    iv3.setImageResource(R.drawable.red);
+    }
+    if(Rt3.equals(Blue)){ 
+    iv3.setImageResource(R.drawable.blue);
+    }
+    if(Rt3.equals(Orange)){
+    iv3.setImageResource(R.drawable.orange);
+    }
+    if(Rt3.equals(Green)){
+    iv3.setImageResource(R.drawable.green);
+    }
+    if(Rt3.equals(Yellow)){
+    iv3.setImageResource(R.drawable.yellow);
+    }
+    if(Rt3.equals(Purple)){
+    iv3.setImageResource(R.drawable.purple);
+    }
+    if(Rt3.equals(Pink)){
+    iv3.setImageResource(R.drawable.pink);
+    }
+    if(Rt3.equals(Brown)){
+    iv3.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt4.equals(Red)){
+    iv4.setImageResource(R.drawable.red);
+    }
+    if(Rt4.equals(Blue)){ 
+    iv4.setImageResource(R.drawable.blue);
+    }
+    if(Rt4.equals(Orange)){
+    iv4.setImageResource(R.drawable.orange);
+    }
+    if(Rt4.equals(Green)){
+    iv4.setImageResource(R.drawable.green);
+    }
+    if(Rt4.equals(Yellow)){
+    iv4.setImageResource(R.drawable.yellow);
+    }
+    if(Rt4.equals(Purple)){
+    iv4.setImageResource(R.drawable.purple);
+    }
+    if(Rt4.equals(Pink)){
+    iv4.setImageResource(R.drawable.pink);
+    }
+    if(Rt4.equals(Brown)){
+    iv4.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt5.equals(Red)){
+    iv5.setImageResource(R.drawable.red);
+    }
+    if(Rt5.equals(Blue)){
+    iv5.setImageResource(R.drawable.blue);
+    }
+    if(Rt5.equals(Orange)){
+    iv5.setImageResource(R.drawable.orange);
+    }
+    if(Rt5.equals(Green)){
+    iv5.setImageResource(R.drawable.green);
+    }
+    if(Rt5.equals(Yellow)){
+    iv5.setImageResource(R.drawable.yellow);
+    }
+    if(Rt5.equals(Purple)){
+    iv5.setImageResource(R.drawable.purple);
+    }
+    if(Rt5.equals(Pink)){
+    iv5.setImageResource(R.drawable.pink);
+    }
+    if(Rt5.equals(Brown)){
+    iv5.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt6.equals(Red)){
+    iv6.setImageResource(R.drawable.red);
+    }
+    if(Rt6.equals(Blue)){
+    iv6.setImageResource(R.drawable.blue);
+    }
+    if(Rt6.equals(Orange)){
+    iv6.setImageResource(R.drawable.orange);
+    }
+    if(Rt6.equals(Green)){
+    iv6.setImageResource(R.drawable.green);
+    }
+    if(Rt6.equals(Yellow)){
+    iv6.setImageResource(R.drawable.yellow);
+    }
+    if(Rt6.equals(Purple)){
+    iv6.setImageResource(R.drawable.purple);
+    }
+    if(Rt6.equals(Pink)){
+    iv6.setImageResource(R.drawable.pink);
+    }
+    if(Rt6.equals(Brown)){
+    iv6.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt7.equals(Red)){
+    iv7.setImageResource(R.drawable.red);
+    }
+    if(Rt7.equals(Blue)){
+    iv7.setImageResource(R.drawable.blue);
+    }
+    if(Rt7.equals(Orange)){
+    iv7.setImageResource(R.drawable.orange);
+    }
+    if(Rt7.equals(Green)){
+    iv7.setImageResource(R.drawable.green);
+    }
+    if(Rt7.equals(Yellow)){
+    iv7.setImageResource(R.drawable.yellow);
+    }
+    if(Rt7.equals(Purple)){
+    iv7.setImageResource(R.drawable.purple);
+    }
+    if(Rt7.equals(Pink)){
+    iv7.setImageResource(R.drawable.pink);
+    }
+    if(Rt7.equals(Brown)){
+    iv7.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt8.equals(Red)){
+    iv8.setImageResource(R.drawable.red);
+    }
+    if(Rt8.equals(Blue)){
+    iv8.setImageResource(R.drawable.blue);
+    }
+    if(Rt8.equals(Orange)){
+    iv8.setImageResource(R.drawable.orange);
+    }
+    if(Rt8.equals(Green)){
+    iv8.setImageResource(R.drawable.green);
+    }
+    if(Rt8.equals(Yellow)){
+    iv8.setImageResource(R.drawable.yellow);
+    }
+    if(Rt8.equals(Purple)){
+    iv8.setImageResource(R.drawable.purple);
+    }
+    if(Rt8.equals(Pink)){
+    iv8.setImageResource(R.drawable.pink);
+    }
+    if(Rt8.equals(Brown)){
+    iv8.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt9.equals(Red)){
+    iv9.setImageResource(R.drawable.red);
+    }
+    if(Rt9.equals(Blue)){
+    iv9.setImageResource(R.drawable.blue);
+    }
+    if(Rt9.equals(Orange)){
+    iv9.setImageResource(R.drawable.orange);
+    }
+    if(Rt9.equals(Green)){
+    iv9.setImageResource(R.drawable.green);
+    }
+    if(Rt9.equals(Yellow)){
+    iv9.setImageResource(R.drawable.yellow);
+    }
+    if(Rt9.equals(Purple)){
+    iv9.setImageResource(R.drawable.purple);
+    }
+    if(Rt9.equals(Pink)){
+    iv9.setImageResource(R.drawable.pink);
+    }
+    if(Rt9.equals(Brown)){
+    iv9.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt10.equals(Red)){
+    iv10.setImageResource(R.drawable.red);
+    }
+    if(Rt10.equals(Blue)){
+    iv10.setImageResource(R.drawable.blue);
+    }
+    if(Rt10.equals(Orange)){
+    iv10.setImageResource(R.drawable.orange);
+    }
+    if(Rt10.equals(Green)){
+    iv10.setImageResource(R.drawable.green);
+    }
+    if(Rt10.equals(Yellow)){
+    iv10.setImageResource(R.drawable.yellow);
+    }
+    if(Rt10.equals(Purple)){
+    iv10.setImageResource(R.drawable.purple);
+    }
+    if(Rt10.equals(Pink)){
+    iv10.setImageResource(R.drawable.pink);
+    }
+    if(Rt10.equals(Brown)){
+    iv10.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt11.equals(Red)){
+    iv11.setImageResource(R.drawable.red);
+    }
+    if(Rt11.equals(Blue)){
+    iv11.setImageResource(R.drawable.blue);
+    }
+    if(Rt11.equals(Orange)){
+    iv11.setImageResource(R.drawable.orange);
+    }
+    if(Rt11.equals(Green)){
+    iv11.setImageResource(R.drawable.green);
+    }
+    if(Rt11.equals(Yellow)){
+    iv11.setImageResource(R.drawable.yellow);
+    }
+    if(Rt11.equals(Purple)){
+    iv11.setImageResource(R.drawable.purple);
+    }
+    if(Rt11.equals(Pink)){
+    iv11.setImageResource(R.drawable.pink);
+    }
+    if(Rt11.equals(Brown)){
+    iv11.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt12.equals(Red)){
+    iv12.setImageResource(R.drawable.red);
+    }
+    if(Rt12.equals(Blue)){
+    iv12.setImageResource(R.drawable.blue);
+    }
+    if(Rt12.equals(Orange)){
+    iv12.setImageResource(R.drawable.orange);
+    }
+    if(Rt12.equals(Green)){
+    iv12.setImageResource(R.drawable.green);
+    }
+    if(Rt12.equals(Yellow)){
+    iv12.setImageResource(R.drawable.yellow);
+    }
+    if(Rt12.equals(Purple)){
+    iv12.setImageResource(R.drawable.purple);
+    }
+    if(Rt12.equals(Pink)){
+    iv12.setImageResource(R.drawable.pink);
+    }
+    if(Rt12.equals(Brown)){
+    iv12.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt13.equals(Red)){
+    iv13.setImageResource(R.drawable.red);
+    }
+    if(Rt13.equals(Blue)){
+    iv13.setImageResource(R.drawable.blue);
+    }
+    if(Rt13.equals(Orange)){
+    iv13.setImageResource(R.drawable.orange);
+    }
+    if(Rt13.equals(Green)){
+    iv13.setImageResource(R.drawable.green);
+    }
+    if(Rt13.equals(Yellow)){
+    iv13.setImageResource(R.drawable.yellow);
+    }
+    if(Rt13.equals(Purple)){
+    iv13.setImageResource(R.drawable.purple);
+    }
+    if(Rt13.equals(Pink)){
+    iv13.setImageResource(R.drawable.pink);
+    }
+    if(Rt13.equals(Brown)){
+    iv13.setImageResource(R.drawable.brown);
+    }
+    
+    if(Rt14.equals(Red)){
+    iv14.setImageResource(R.drawable.red);
+    }
+    if (Rt14.equals(Blue)){
+    iv14.setImageResource(R.drawable.blue);
+    }
+    if(Rt14.equals(Orange)){
+    iv14.setImageResource(R.drawable.orange);
+    }
+    if(Rt14.equals(Green)){
+    iv14.setImageResource(R.drawable.green);
+    }
+    if(Rt14.equals(Yellow)){
+    iv14.setImageResource(R.drawable.yellow);
+    }
+    if(Rt14.equals(Purple)){
+    iv14.setImageResource(R.drawable.purple);
+    }
+    if(Rt14.equals(Pink)){
+    iv14.setImageResource(R.drawable.pink);
+    }
+    if(Rt14.equals(Brown)){
+    iv14.setImageResource(R.drawable.brown);
+    }
     
 
     try {
@@ -298,6 +725,7 @@ public class TestStation extends Activity {
 	    tv25.setText(String.valueOf (dateDif12));
 	    tv27.setText(String.valueOf (dateDif13));
 	    tv29.setText(String.valueOf (dateDif14));
+	    
 
 	    
 	    }
@@ -327,36 +755,6 @@ public class TestStation extends Activity {
 	}
     }
 	
-
-    
-	
-    
-
-    
-
-	
-	
-	
-	
-    
-    	
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	@Override
