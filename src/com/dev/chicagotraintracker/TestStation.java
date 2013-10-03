@@ -11,6 +11,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import android.net.Uri;
+import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.app.Activity;
@@ -30,7 +32,9 @@ public class TestStation extends Activity {
             setContentView(R.layout.test_station);
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy); 
-    
+            
+            Intent intent = getIntent();
+
            
             
     Document doc = null;

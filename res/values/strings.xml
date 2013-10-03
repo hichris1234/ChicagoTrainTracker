@@ -29,6 +29,11 @@
     <string name="Purple_Line">Purple Line</string>
     <string name="Pink_Line">Pink Line</string>
     <string name="Yellow_Line">Yellow Line</string>
+    <string name="Protocol">Yellow Line</string>
+    <string name="Host">Yellow Line</string>
+    <string name="File">Yellow Line</string>
+
+    
     
     
      <string-array name="Lines">
@@ -49,7 +54,6 @@
         <item>79th</item>
         <item>87th</item>
         <item>95th/Dan Ryan</item>
-        <item>95th/Ran Ryan</item>
         <item>Addison</item>
         <item>Argyle</item>
         <item>Belmont</item>
@@ -258,6 +262,225 @@
         <item>Oakton-Skokie</item>
         <item>Skokie</item>
     </string-array>
+    
+    <string-array name="Red_ID">
+        <item>41230</item>
+        <item>40910</item>
+        <item>40990</item>
+        <item>40240</item>
+        <item>41430</item>
+        <item>40450</item>
+        <item>41420</item>
+        <item>41200</item>
+        <item>41320</item>
+        <item>40340</item>
+        <item>41380</item>
+        <item>41000</item>
+        <item>41450</item>
+        <item>40630</item>
+        <item>41220</item>
+        <item>41170</item>
+        <item>40330</item>
+        <item>40760</item>
+        <item>41490</item>
+        <item>40900</item>
+        <item>40560</item>
+        <item>41190</item>
+        <item>41660</item>
+        <item>40770</item>
+        <item>41300</item>
+        <item>41090</item>
+        <item>40100</item>
+        <item>40650</item>
+        <item>41400</item>
+        <item>40080</item>
+        <item>40190</item>
+        <item>40880</item>
+        <item>40540</item>
+    </string-array>
+    
+    <string-array name="Blue_ID">
+        <item>41240</item>
+        <item>40010</item>
+        <item>40060</item>
+        <item>40570</item>
+        <item>41410</item>
+        <item>40970</item>
+        <item>40380</item>
+        <item>40430</item>
+        <item>40230</item>
+        <item>40590</item>
+        <item>40320</item>
+        <item>40390</item>
+        <item>40490</item>
+        <item>40980</item>
+        <item>40750</item>
+        <item>40810</item>
+        <item>40550</item>
+        <item>40070</item>
+        <item>41280</item>
+        <item>40250</item>
+        <item>41340</item>
+        <item>41020</item>
+        <item>40790</item>
+        <item>41330</item>
+        <item>40180</item>
+        <item>40890</item>
+        <item>40920</item>
+        <item>40470</item>
+        <item>40820</item>
+        <item>40350</item>
+        <item>40370</item>
+        <item>40220</item>
+        <item>40670</item>
+    </string-array>
+    
+    <string-array name="Green_ID">
+        <item>40680</item>
+        <item>40380</item>
+        <item>40640</item>
+        <item>40200</item>
+        <item>40260</item>
+        <item>41120</item>
+        <item>41270</item>
+        <item>41080</item>
+        <item>40130</item>
+        <item>40170</item>
+        <item>40290</item>
+        <item>41260</item>
+        <item>41360</item>
+        <item>40280</item>
+        <item>40480</item>
+        <item>41160</item>
+        <item>41670</item>
+        <item>40720</item>
+        <item>40510</item>
+        <item>40940</item>
+        <item>40020</item>
+        <item>40300</item>
+        <item>41070</item>
+        <item>41140</item>
+        <item>40700</item>
+        <item>41510</item>
+        <item>41350</item>
+        <item>40030</item>
+        <item>40610</item>
+        <item>41400</item>
+    </string-array>
+    
+    <string-array name="Orange_ID">
+        <item>40680</item>
+        <item>40380</item>
+        <item>40640</item>
+        <item>40200</item>
+        <item>40260</item>
+        <item>40850</item>
+        <item>40160</item>
+        <item>40040</item>
+        <item>40730</item>
+        <item>41400</item>
+        <item>40120</item>
+        <item>41060</item>
+        <item>41130</item>
+        <item>41150</item>
+        <item>40930</item>
+        <item>40960</item>
+        <item>40310</item>
+    </string-array>
+    
+    <string-array name="Brown_ID">
+        <item>40680</item>
+        <item>41440</item>
+        <item>40660</item>
+        <item>41320</item>
+        <item>40710</item>
+        <item>40380</item>
+        <item>40090</item>
+        <item>40530</item>
+        <item>40870</item>
+        <item>41220</item>
+        <item>40850</item>
+        <item>41460</item>
+        <item>41180</item>
+        <item>41290</item>
+        <item>40160</item>
+        <item>40640</item>
+        <item>40460</item>
+        <item>41500</item>
+        <item>41310</item>
+        <item>40040</item>
+        <item>40200</item>
+        <item>41010</item>
+        <item>40800</item>
+        <item>40360</item>
+        <item>40260</item>
+        <item>40730</item>
+        <item>41210</item>
+        <item>41480</item>
+    </string-array>
+    
+    <string-array name="Purple_ID">
+        <item>40900</item>
+        <item>41250</item>
+        <item>40050</item>
+        <item>40690</item>
+        <item>40520</item>
+        <item>41050</item>
+        <item>40270</item>
+        <item>40400</item>
+        <item>40840</item>
+        <item>40680</item>
+        <item>40380</item>
+        <item>40640</item>
+        <item>40200</item>
+        <item>40260</item>
+        <item>40850</item>
+        <item>40160</item>
+        <item>40040</item>
+        <item>40730</item>
+        <item>40660</item>
+        <item>41320</item>
+        <item>40710</item>
+        <item>40530</item>
+        <item>41220</item>
+        <item>40460</item>
+        <item>40800</item>
+        <item>41210</item>
+    </string-array>
+    
+    <string-array name="Pink_ID">
+        <item>40680</item>
+        <item>40170</item>
+        <item>40380</item>
+        <item>41160</item>
+        <item>40640</item>
+        <item>41510</item>
+        <item>40200</item>
+        <item>40260</item>
+        <item>40830</item>
+        <item>40580</item>
+        <item>40440</item>
+        <item>40780</item>
+        <item>40420</item>
+        <item>40210</item>
+        <item>40850</item>
+        <item>41040</item>
+        <item>40600</item>
+        <item>40160</item>
+        <item>41030</item>
+        <item>40150</item>
+        <item>40040</item>
+        <item>40730</item>
+        <item>40740</item>
+    </string-array>
+    
+    <string-array name="Yellow_ID">
+        <item>40900</item>
+        <item>41680</item>
+        <item>40140</item>
+    </string-array>
+    
+    
     
 
     <string name="Check">Check Station Status</string>
