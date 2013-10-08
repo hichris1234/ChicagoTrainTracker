@@ -17,7 +17,7 @@
         android:id="@+id/tv1"
         android:layout_width="150dp"
         android:layout_height="25dp"
-        android:layout_marginRight="150dp"
+        android:layout_alignParentLeft="true"
         android:textSize="17dp" />
 
     <TextView

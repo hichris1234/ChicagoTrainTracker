@@ -29,12 +29,6 @@
     <string name="Purple_Line">Purple Line</string>
     <string name="Pink_Line">Pink Line</string>
     <string name="Yellow_Line">Yellow Line</string>
-    <string name="Protocol">Yellow Line</string>
-    <string name="Host">Yellow Line</string>
-    <string name="File">Yellow Line</string>
-
-    
-    
     
      <string-array name="Lines">
         <item>Red Line</item>
