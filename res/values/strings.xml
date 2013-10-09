@@ -29,6 +29,8 @@
     <string name="Purple_Line">Purple Line</string>
     <string name="Pink_Line">Pink Line</string>
     <string name="Yellow_Line">Yellow Line</string>
+    <string name="Approaching">Due</string>
+    <string name="min">01:00</string>
     
      <string-array name="Lines">
         <item>Red Line</item>
@@ -473,6 +475,458 @@
         <item>41680</item>
         <item>40140</item>
     </string-array>
+    
+    <string-array name="Stations">
+        <item>18th</item>
+        <item>35th/Archer</item>
+        <item>35th-Bronzeville-IIT</item>
+        <item>43rd</item>
+        <item>47th</item>
+        <item>47th</item>
+        <item>51st</item>
+        <item>54th/Cermak</item>
+        <item>63rd</item>
+        <item>69th</item>
+        <item>79th</item>
+        <item>87th</item>
+        <item>95th/Dan Ryan</item>
+        <item>95th/Ran Ryan</item>
+        <item>Adams/Wabash</item>
+        <item>Addison</item>
+        <item>Addison</item>
+        <item>Addison</item>
+        <item>Argyle</item>
+        <item>Armitage</item>
+        <item>Ashland</item>
+        <item>Ashland</item>
+        <item>Ashland/63rd</item>
+        <item>Austin</item>
+        <item>Austin</item>
+        <item>Belmont</item>
+        <item>Belmont</item>
+        <item>Berwyn</item>
+        <item>Bryn Mawr</item>
+        <item>California</item>
+        <item>California</item>
+        <item>California</item>
+        <item>Central</item>
+        <item>Central</item>
+        <item>Central Park</item>
+        <item>Cermak-Chinatown</item>
+        <item>Chicago</item>
+        <item>Chicago</item>
+        <item>Chicago</item>
+        <item>Cicero</item>
+        <item>Cicero</item>
+        <item>Cicero</item>
+        <item>Clark/Division</item>
+        <item>Clark/Lake</item>
+        <item>Clinton</item>
+        <item>Clinton</item>
+        <item>Conservatory</item>
+        <item>Cottage Grove</item>
+        <item>Cumberland</item>
+        <item>Damen</item>
+        <item>Damen</item>
+        <item>Damen</item>
+        <item>Davis</item>
+        <item>Dempster</item>
+        <item>Diversey</item>
+        <item>Division</item>
+        <item>Forest Park</item>
+        <item>Foster</item>
+        <item>Francisco</item>
+        <item>Fullerton</item>
+        <item>Garfield</item>
+        <item>Garfield</item>
+        <item>Grand</item>
+        <item>Grand</item>
+        <item>Granville</item>
+        <item>Halsted</item>
+        <item>Halsted</item>
+        <item>Harlem</item>
+        <item>Harlem</item>
+        <item>Harlem/Lake</item>
+        <item>Harold Washington Library-State/Van Buren</item>
+        <item>Harrison</item>
+        <item>Howard</item>
+        <item>Illinois Medical District</item>
+        <item>Indiana</item>
+        <item>Irving Park</item>
+        <item>Irving Park</item>
+        <item>Jackson</item>
+        <item>Jackson</item>
+        <item>Jarvis</item>
+        <item>Jefferson Park</item>
+        <item>Kedzie</item>
+        <item>Kedzie</item>
+        <item>Kedzie</item>
+        <item>Kedzie</item>
+        <item>Kedzie-Homan</item>
+        <item>Kimball</item>
+        <item>King Drive</item>
+        <item>Kostner</item>
+        <item>Lake</item>
+        <item>Laramie</item>
+        <item>LaSalle</item>
+        <item>LaSalle/Van Buren</item>
+        <item>Lawrence</item>
+        <item>Linden</item>
+        <item>Logan Square</item>
+        <item>Loyola</item>
+        <item>Madison/Wabash</item>
+        <item>Main</item>
+        <item>Merchandise Mart</item>
+        <item>Midway</item>
+        <item>Monroe</item>
+        <item>Monroe</item>
+        <item>Montrose</item>
+        <item>Montrose</item>
+        <item>Morgan</item>
+        <item>Morse</item>
+        <item>North/Clybourn</item>
+        <item>Noyes</item>
+        <item>Oak Park</item>
+        <item>Oak Park</item>
+        <item>Oakton-Skokie</item>
+        <item>O\'Hare</item>
+        <item>Paulina</item>
+        <item>Polk</item>
+        <item>Pulaski</item>
+        <item>Pulaski</item>
+        <item>Pulaski</item>
+        <item>Pulaski</item>
+        <item>Quincy/Wells</item>
+        <item>Racine</item>
+        <item>Randolph/Wabash</item>
+        <item>Ridgeland</item>
+        <item>Rockwell</item>
+        <item>Roosevelt</item>
+        <item>Roosevelt</item>
+        <item>Rosemont</item>
+        <item>Sedgwick</item>
+        <item>Sheridan</item>
+        <item>Skokie</item>
+        <item>South Boulevard</item>
+        <item>Southport</item>
+        <item>Sox-35th</item>
+        <item>State/Lake</item>
+        <item>Thorndale</item>
+        <item>UIC-Halsted</item>
+        <item>Washington</item>
+        <item>Washington/Wells</item>
+        <item>Wellington</item>
+        <item>Western</item>
+        <item>Western</item>
+        <item>Western</item>
+        <item>Western</item>
+        <item>Western</item>
+        <item>Wilson</item>
+    </string-array>
+    
+        <string-array name="Latitude">
+<item>-87.669147</item>
+<item>-87.680622</item>
+<item>-87.625826</item>
+<item>-87.619021</item>
+<item>-87.618826</item>
+<item>-87.63094</item>
+<item>-87.618487</item>
+<item>-87.75669201</item>
+<item>-87.630952</item>
+<item>-87.625724</item>
+<item>-87.625112</item>
+<item>-87.624717</item>
+<item>-87.624342</item>
+<item>-87.624342</item>
+<item>-87.626037</item>
+<item>-87.71906</item>
+<item>-87.674642</item>
+<item>-87.653626</item>
+<item>-87.65853</item>
+<item>-87.652644</item>
+<item>-87.665317</item>
+<item>-87.666969</item>
+<item>-87.663766</item>
+<item>-87.776812</item>
+<item>-87.774135</item>
+<item>-87.712359</item>
+<item>-87.65338</item>
+<item>-87.658668</item>
+<item>-87.65884</item>
+<item>-87.694774</item>
+<item>-87.69689</item>
+<item>-87.696234</item>
+<item>-87.685617</item>
+<item>-87.76565</item>
+<item>-87.714842</item>
+<item>-87.630968</item>
+<item>-87.655214</item>
+<item>-87.635924</item>
+<item>-87.628176</item>
+<item>-87.745336</item>
+<item>-87.745154</item>
+<item>-87.744698</item>
+<item>-87.631412</item>
+<item>-87.630886</item>
+<item>-87.640984</item>
+<item>-87.641782</item>
+<item>-87.716523</item>
+<item>-87.605857</item>
+<item>-87.838028</item>
+<item>-87.675975</item>
+<item>-87.677437</item>
+<item>-87.678639</item>
+<item>-87.683543</item>
+<item>-87.681602</item>
+<item>-87.653131</item>
+<item>-87.666496</item>
+<item>-87.817318</item>
+<item>-87.68356</item>
+<item>-87.701644</item>
+<item>-87.652866</item>
+<item>-87.618327</item>
+<item>-87.631157</item>
+<item>-87.647578</item>
+<item>-87.628021</item>
+<item>-87.659202</item>
+<item>-87.648088</item>
+<item>-87.644244</item>
+<item>-87.806961</item>
+<item>-87.8089</item>
+<item>-87.803176</item>
+<item>-87.628196</item>
+<item>-87.627479</item>
+<item>-87.672892</item>
+<item>-87.673932</item>
+<item>-87.621371</item>
+<item>-87.729229</item>
+<item>-87.674868</item>
+<item>-87.629296</item>
+<item>-87.627596</item>
+<item>-87.669092</item>
+<item>-87.760892</item>
+<item>-87.704406</item>
+<item>-87.705408</item>
+<item>-87.708821</item>
+<item>-87.706155</item>
+<item>-87.70604</item>
+<item>-87.713065</item>
+<item>-87.615546</item>
+<item>-87.733258</item>
+<item>-87.627813</item>
+<item>-87.754986</item>
+<item>-87.631722</item>
+<item>-87.631739</item>
+<item>-87.658493</item>
+<item>-87.69073</item>
+<item>-87.708541</item>
+<item>-87.661061</item>
+<item>-87.626098</item>
+<item>-87.679538</item>
+<item>-87.633924</item>
+<item>-87.737875</item>
+<item>-87.629378</item>
+<item>-87.627696</item>
+<item>-87.743574</item>
+<item>-87.675047</item>
+<item>-87.652193</item>
+<item>-87.665909</item>
+<item>-87.649177</item>
+<item>-87.683337</item>
+<item>-87.791602</item>
+<item>-87.793783</item>
+<item>-87.74722084</item>
+<item>-87.90422307</item>
+<item>-87.670907</item>
+<item>-87.66953</item>
+<item>-87.724493</item>
+<item>-87.724311</item>
+<item>-87.725663</item>
+<item>-87.725404</item>
+<item>-87.63374</item>
+<item>-87.659458</item>
+<item>-87.626149</item>
+<item>-87.783661</item>
+<item>-87.6941</item>
+<item>-87.62659</item>
+<item>-87.627402</item>
+<item>-87.859388</item>
+<item>-87.639302</item>
+<item>-87.654929</item>
+<item>-87.751919</item>
+<item>-87.678329</item>
+<item>-87.663619</item>
+<item>-87.630636</item>
+<item>-87.627835</item>
+<item>-87.659076</item>
+<item>-87.649707</item>
+<item>-87.62944</item>
+<item>-87.63378</item>
+<item>-87.653266</item>
+<item>-87.684019</item>
+<item>-87.685129</item>
+<item>-87.688436</item>
+<item>-87.687364</item>
+<item>-87.688502</item>
+<item>-87.657588</item>
+    </string-array>
+    
+            <string-array name="Longitude">
+<item>41.857908</item>
+<item>41.829353</item>
+<item>41.831677</item>
+<item>41.816462</item>
+<item>41.809209</item>
+<item>41.810318</item>
+<item>41.80209</item>
+<item>41.85177331</item>
+<item>41.780536</item>
+<item>41.768367</item>
+<item>41.750419</item>
+<item>41.735372</item>
+<item>41.722377</item>
+<item>41.722377</item>
+<item>41.879507</item>
+<item>41.94738</item>
+<item>41.947028</item>
+<item>41.947428</item>
+<item>41.973453</item>
+<item>41.918217</item>
+<item>41.839234</item>
+<item>41.885269</item>
+<item>41.77886</item>
+<item>41.870851</item>
+<item>41.887293</item>
+<item>41.938132</item>
+<item>41.939751</item>
+<item>41.977984</item>
+<item>41.983504</item>
+<item>41.854109</item>
+<item>41.921939</item>
+<item>41.88422</item>
+<item>42.063987</item>
+<item>41.887389</item>
+<item>41.853839</item>
+<item>41.853206</item>
+<item>41.896075</item>
+<item>41.89681</item>
+<item>41.896671</item>
+<item>41.85182</item>
+<item>41.871574</item>
+<item>41.886519</item>
+<item>41.90392</item>
+<item>41.885737</item>
+<item>41.875539</item>
+<item>41.885678</item>
+<item>41.884904</item>
+<item>41.780309</item>
+<item>41.984246</item>
+<item>41.854517</item>
+<item>41.909744</item>
+<item>41.966286</item>
+<item>42.04771</item>
+<item>42.041655</item>
+<item>41.932732</item>
+<item>41.903355</item>
+<item>41.874257</item>
+<item>42.05416</item>
+<item>41.966046</item>
+<item>41.925051</item>
+<item>41.795172</item>
+<item>41.79542</item>
+<item>41.891189</item>
+<item>41.891665</item>
+<item>41.993664</item>
+<item>41.84678</item>
+<item>41.778943</item>
+<item>41.87349</item>
+<item>41.98227</item>
+<item>41.886848</item>
+<item>41.876862</item>
+<item>41.874039</item>
+<item>42.019063</item>
+<item>41.875706</item>
+<item>41.821732</item>
+<item>41.952925</item>
+<item>41.954521</item>
+<item>41.878183</item>
+<item>41.878153</item>
+<item>42.015876</item>
+<item>41.970634</item>
+<item>41.804236</item>
+<item>41.853964</item>
+<item>41.965996</item>
+<item>41.884321</item>
+<item>41.874341</item>
+<item>41.967901</item>
+<item>41.78013</item>
+<item>41.853751</item>
+<item>41.884809</item>
+<item>41.887163</item>
+<item>41.875568</item>
+<item>41.8768</item>
+<item>41.969139</item>
+<item>42.073153</item>
+<item>41.929728</item>
+<item>42.001073</item>
+<item>41.882023</item>
+<item>42.033456</item>
+<item>41.888969</item>
+<item>41.78661</item>
+<item>41.880703</item>
+<item>41.880745</item>
+<item>41.961539</item>
+<item>41.961756</item>
+<item>41.885586</item>
+<item>42.008362</item>
+<item>41.910655</item>
+<item>42.058282</item>
+<item>41.872108</item>
+<item>41.886988</item>
+<item>42.02624348</item>
+<item>41.97766526</item>
+<item>41.943623</item>
+<item>41.871551</item>
+<item>41.799756</item>
+<item>41.853732</item>
+<item>41.873797</item>
+<item>41.885412</item>
+<item>41.878723</item>
+<item>41.87592</item>
+<item>41.884431</item>
+<item>41.887159</item>
+<item>41.966115</item>
+<item>41.867405</item>
+<item>41.867368</item>
+<item>41.983507</item>
+<item>41.910409</item>
+<item>41.953775</item>
+<item>42.038951</item>
+<item>42.027612</item>
+<item>41.943744</item>
+<item>41.831191</item>
+<item>41.88574</item>
+<item>41.990259</item>
+<item>41.875474</item>
+<item>41.883164</item>
+<item>41.882695</item>
+<item>41.936033</item>
+<item>41.804546</item>
+<item>41.854225</item>
+<item>41.875478</item>
+<item>41.916157</item>
+<item>41.966163</item>
+<item>41.964273</item>
+    </string-array>
+    
+    <string-array name="ID">
+        <item>Howard</item>
+        <item>Oakton-Skokie</item>
+        <item>Skokie</item>
+    </string-array>
+    
+    
     
     
     

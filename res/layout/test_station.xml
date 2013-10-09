@@ -1,3 +1,9 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginBottom="0dp"
+    android:layout_marginTop="0dp" >
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -351,17 +357,19 @@
         android:layout_toRightOf="@+id/tv13" />
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/tv27"
-        android:layout_toRightOf="@+id/tv27" />
-
-    <ImageView
         android:id="@+id/imageView13"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_below="@+id/tv25"
         android:layout_toRightOf="@+id/tv25" />
 
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/tv27"
+            android:layout_toRightOf="@+id/tv27" />
+
 </RelativeLayout>
+
+</ScrollView>

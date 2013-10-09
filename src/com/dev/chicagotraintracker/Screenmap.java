@@ -11,7 +11,7 @@ import android.support.v4.app.NavUtils;
 @SuppressLint("NewApi")
 public class Screenmap extends Activity {
 
-	@SuppressLint("NewApi")
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

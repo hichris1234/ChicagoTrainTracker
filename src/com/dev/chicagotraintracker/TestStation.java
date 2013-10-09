@@ -39,6 +39,8 @@ public class TestStation extends Activity {
 	Elements arrT12;
 	Elements arrT13;
 	Elements arrT14;
+	Elements arrT15;
+	Elements arrT16;
 	
 	Elements prdt;
 	Elements prdt1;
@@ -55,22 +57,8 @@ public class TestStation extends Activity {
 	Elements prdt12;
 	Elements prdt13;
 	Elements prdt14;
-	
-	Elements Rt;
-	Elements Rt1;
-	Elements Rt2;
-	Elements Rt3;
-	Elements Rt4;
-	Elements Rt5;
-	Elements Rt6;
-	Elements Rt7;
-	Elements Rt8;
-	Elements Rt9;
-	Elements Rt10;
-	Elements Rt11;
-	Elements Rt12;
-	Elements Rt13;
-	Elements Rt14;
+	Elements prdt15;
+	Elements prdt16;
 	
 	String rt;
 	String rt1;
@@ -87,6 +75,8 @@ public class TestStation extends Activity {
 	String rt12;
 	String rt13;
 	String rt14;
+	String rt15;
+	String rt16;
 	
 	 
 	String URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid=40380";
@@ -161,6 +151,8 @@ public class TestStation extends Activity {
     String Orange = this.getString(R.string.Orange);
     String Yellow = this.getString(R.string.Yellow);
     String Pink = this.getString(R.string.Pink);
+    String Approaching = this.getString(R.string.Approaching);
+    String min = this.getString(R.string.min);
     		 
 	try {
 	    doc = Jsoup.connect(myUrl).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
@@ -257,6 +249,12 @@ public class TestStation extends Activity {
     if(arT.size() > 14 && arT.get(14) != null){
     arrT14 = arT.get(14);
     }
+    if(arT.size() > 15 && arT.get(15) != null){
+        arrT15 = arT.get(15);
+        }
+    if(arT.size() > 16 && arT.get(16) != null){
+        arrT16 = arT.get(16);
+        }
     
     if(prT.size() > 0 && prT.get(0) != null){
     prdt = prT.get(0);
@@ -303,6 +301,12 @@ public class TestStation extends Activity {
     if(prT.size() > 14 && prT.get(14) != null){
     prdt14 = prT.get(14);
     }
+    if(prT.size() > 15 && prT.get(15) != null){
+        prdt15 = prT.get(15);
+        }
+    if(prT.size() > 16 && prT.get(16) != null){
+        prdt16 = prT.get(16);
+        }
     
     if(DestNm.size() > 0 && DestNm.get(0) != null){
     String DestNma = DestNm.get(0).text();
@@ -364,68 +368,77 @@ public class TestStation extends Activity {
     String DestNm14 = DestNm.get(14).text();
     tv28.setText(String.valueOf (DestNm14));
     }
+        
     
 
     if(rta.size() > 0 && rta.get(0) != null){
-    Rt = rta.get(0);
+    Elements Rt = rta.get(0);
     rt = Rt.text();
     }
     if(rta.size() > 1 && rta.get(1) != null){
-    Rt1 = rta.get(1);
+    Elements Rt1 = rta.get(1);
     rt1 = Rt1.text();
     }
     if(rta.size() > 2 && rta.get(2) != null){
-    Rt2 = rta.get(2);
+    Elements Rt2 = rta.get(2);
     rt2 = Rt2.text();
     }
     if(rta.size() > 3 && rta.get(3) != null){
-    Rt3 = rta.get(3);
+    Elements Rt3 = rta.get(3);
     rt3 = Rt3.text();
     }
     if(rta.size() > 4 && rta.get(4) != null){
-    Rt4 = rta.get(4);
+    Elements Rt4 = rta.get(4);
     rt4 = Rt4.text();
     }
     if(rta.size() > 5 && rta.get(5) != null){
-    Rt5 = rta.get(5);
+    Elements Rt5 = rta.get(5);
     rt5 = Rt5.text();
     }
     if(rta.size() > 6 && rta.get(6) != null){
-    Rt6 = rta.get(6);
+    Elements Rt6 = rta.get(6);
     rt6 = Rt6.text();
     }
     if(rta.size() > 7 && rta.get(7) != null){
-    Rt7 = rta.get(7);
+    Elements Rt7 = rta.get(7);
     rt7 = Rt7.text();
     }
     if(rta.size() > 8 && rta.get(8) != null){
-    Rt8 = rta.get(8);
+    Elements Rt8 = rta.get(8);
     rt8 = Rt8.text();
     }
     if(rta.size() > 9 && rta.get(9) != null){
-    Rt9 = rta.get(9);
+    Elements Rt9 = rta.get(9);
     rt9 = Rt9.text();
     }
     if(rta.size() > 10 && rta.get(10) != null){
-    Rt10 = rta.get(10);
+    Elements Rt10 = rta.get(10);
     rt10 = Rt10.text();
     }
     if(rta.size() > 11 && rta.get(11) != null){
-    Rt11 = rta.get(11);
+    Elements Rt11 = rta.get(11);
     rt11 = Rt11.text();
     }
     if(rta.size() > 12 && rta.get(12) != null){
-    Rt12 = rta.get(12);
+    Elements Rt12 = rta.get(12);
     rt12 = Rt12.text();
     }
     if(rta.size() > 13 && rta.get(13) != null){
-    Rt13 = rta.get(13);
+    Elements Rt13 = rta.get(13);
     rt13 = Rt13.text();
     }
     if(rta.size() > 14 && rta.get(14) != null){
-    Rt14 = rta.get(14);
+    Elements Rt14 = rta.get(14);
     rt14 = Rt14.text();
     }
+    if(rta.size() > 15 && rta.get(15) != null){
+        Elements Rt15 = rta.get(15);
+        rt15 = Rt15.text();
+        }
+    if(rta.size() > 16 && rta.get(16) != null){
+        Elements Rt16 = rta.get(16);
+        rt16 = Rt16.text();
+        }
     
     Log.i("MYMESSAGE3", String.valueOf(rta.size()));
     
@@ -835,6 +848,8 @@ public class TestStation extends Activity {
     }
     }
     
+
+    
     
 
     try {
@@ -847,7 +862,13 @@ public class TestStation extends Activity {
         Date date2 = sdf.parse(prdt.text());
         long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
         String dateDif = sdf1.format(dateDiff);
+        
+        if(String.valueOf(dateDif).equals(min)) {
+        	tv.setText(String.valueOf (Approaching));
+        }
+        else{
 	    tv.setText(String.valueOf (dateDif));
+    	}
     	}
     	
     	if(arrT1!=null && !arrT1.isEmpty()){
@@ -855,7 +876,12 @@ public class TestStation extends Activity {
             Date date4 = sdf.parse(prdt1.text());
             long dateDiff = (date3.getTime() - date4.getTime())>0 ? (date3.getTime() - date4.getTime()) :(date4.getTime() - date3.getTime());
             String dateDif = sdf1.format(dateDiff);
+            if(String.valueOf(dateDif).equals(min)) {
+            	tv3.setText(String.valueOf (Approaching));
+            }
+            else{
     	    tv3.setText(String.valueOf (dateDif));
+        	}
         	}
     	
     	if(arrT2!=null && !arrT2.isEmpty()){
@@ -863,7 +889,12 @@ public class TestStation extends Activity {
             Date date2 = sdf.parse(prdt2.text());
             long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
             String dateDif = sdf1.format(dateDiff);
+            if(String.valueOf(dateDif).equals(min)) {
+            	tv5.setText(String.valueOf (Approaching));
+            }
+            else{
     	    tv5.setText(String.valueOf (dateDif));
+        	}
         	}
     	
     	if(arrT3!=null && !arrT3.isEmpty()){
@@ -961,7 +992,7 @@ public class TestStation extends Activity {
             String dateDif = sdf1.format(dateDiff);
     	    tv29.setText(String.valueOf (dateDif));
         	}
-	    
+   
 
 	    
 	    }
