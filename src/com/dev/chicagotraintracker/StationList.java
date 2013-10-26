@@ -296,24 +296,7 @@ public class StationList extends Activity {
         Intent Intent9 = new Intent(StationList.this, TestStation.class);
         Intent9.putExtra("value", value);
         startActivityForResult(Intent9, 0); 
-        setContentView(R.layout.test_station);
         }
-    
-
-   
-   
-
-
-    @Override
-	public void onBackPressed()
-	{
-    startActivity(new Intent(StationList.this, MainActivity.class));
-    finish();
-}
-
-
-
-
 
 	}
 	

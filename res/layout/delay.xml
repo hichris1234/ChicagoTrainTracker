@@ -4,31 +4,12 @@
     android:layout_height="match_parent"
     tools:context=".Delay" >
 
-    <TextView
-        android:id="@+id/t4"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/t2"
-        android:textSize="12dp" />
-
-    <TextView
-        android:id="@+id/t"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textSize="12dp" />
-
-    <TextView
-        android:id="@+id/t2"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/t"
-        android:textSize="12dp" />
+        android:layout_alignParentTop="true" >
+    </ListView>
 
 </RelativeLayout>

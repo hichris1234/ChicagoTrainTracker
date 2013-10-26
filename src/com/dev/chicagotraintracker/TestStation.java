@@ -11,21 +11,24 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
-public class TestStation extends Activity {
+public class TestStation extends Activity implements PullToRefreshAttacher.OnRefreshListener {
 	Elements arrT;
 	Elements arrT1;
 	Elements arrT2;
@@ -80,6 +83,8 @@ public class TestStation extends Activity {
 	String rt15;
 	String rt16;
 	
+	String myUrl;
+	
     Document doc = null;
     
 	ArrayList<Elements> arT = new ArrayList<Elements>();
@@ -89,79 +94,28 @@ public class TestStation extends Activity {
 	
 	Iterator<Element> iterator;
 	 
-	int count = 0;
+	int count;
+	int times;
 	
-	String URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid=40380";
+	private PullToRefreshAttacher mPullToRefreshAttacher;
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
             setContentView(R.layout.test_station);
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy); 
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            // Create new PullToRefreshAttacher
+            mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+
+            // Retrieve the PullToRefreshLayout from the content view
+            PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.scroll);
+
+            // Give the PullToRefreshAttacher to the PullToRefreshLayout, along with the refresh
+            // listener (this).
+            ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
             
-            Intent intent = getIntent();
-            String value = intent.getExtras().getString("value");
-            
-            Uri my = Uri.parse("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid="+value);
-                    
-            final String myUrl = my.toString();
-    
-    final TextView tv = (TextView) findViewById(R.id.tv);
-    final TextView tv1 = (TextView) findViewById(R.id.tv1);
-    final TextView tv2 = (TextView) findViewById(R.id.tv2);
-    final TextView tv3 = (TextView) findViewById(R.id.tv3);
-    final TextView tv4 = (TextView) findViewById(R.id.tv4);
-    final TextView tv5 = (TextView) findViewById(R.id.tv5);
-    final TextView tv6 = (TextView) findViewById(R.id.tv6);
-    final TextView tv7 = (TextView) findViewById(R.id.tv7);
-    final TextView tv8 = (TextView) findViewById(R.id.tv8);
-    final TextView tv9 = (TextView) findViewById(R.id.tv9);
-    final TextView tv10 = (TextView) findViewById(R.id.tv10);
-    final TextView tv11 = (TextView) findViewById(R.id.tv11);
-    final TextView tv12 = (TextView) findViewById(R.id.tv12);
-    final TextView tv13 = (TextView) findViewById(R.id.tv13);
-    final TextView tv14 = (TextView) findViewById(R.id.tv14);
-    final TextView tv15 = (TextView) findViewById(R.id.tv15);
-    final TextView tv16 = (TextView) findViewById(R.id.tv16);
-    final TextView tv17 = (TextView) findViewById(R.id.tv17);
-    final TextView tv18 = (TextView) findViewById(R.id.tv18);
-    final TextView tv19 = (TextView) findViewById(R.id.tv19);
-    final TextView tv20 = (TextView) findViewById(R.id.tv20);
-    final TextView tv21 = (TextView) findViewById(R.id.tv21);
-    final TextView tv22 = (TextView) findViewById(R.id.tv22);
-    final TextView tv23 = (TextView) findViewById(R.id.tv23);
-    final TextView tv24 = (TextView) findViewById(R.id.tv24);
-    final TextView tv25 = (TextView) findViewById(R.id.tv25);
-    final TextView tv26 = (TextView) findViewById(R.id.tv26);
-    final TextView tv27 = (TextView) findViewById(R.id.tv27);
-    final TextView tv28 = (TextView) findViewById(R.id.tv28);
-    final TextView tv29 = (TextView) findViewById(R.id.tv29);
-    final ImageView iv = (ImageView) findViewById(R.id.imageView);
-    final ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-    final ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
-    final ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
-    final ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
-    final ImageView iv5 = (ImageView) findViewById(R.id.imageView5);
-    final ImageView iv6 = (ImageView) findViewById(R.id.imageView6);
-    final ImageView iv7 = (ImageView) findViewById(R.id.imageView7);
-    final ImageView iv8 = (ImageView) findViewById(R.id.imageView8);
-    final ImageView iv9 = (ImageView) findViewById(R.id.imageView9);
-    final ImageView iv10 = (ImageView) findViewById(R.id.imageView10);
-    final ImageView iv11 = (ImageView) findViewById(R.id.imageView11);
-    final ImageView iv12 = (ImageView) findViewById(R.id.imageView12);
-    final ImageView iv13 = (ImageView) findViewById(R.id.imageView13);
-    final ImageView iv14 = (ImageView) findViewById(R.id.imageView14);
-    final String Red = this.getString(R.string.Red);
-    final String Blue = this.getString(R.string.Blue);
-    final String Green = this.getString(R.string.Green);
-    final String Brown = this.getString(R.string.Brown);
-    final String Purple = this.getString(R.string.Purple);
-    final String Orange = this.getString(R.string.Orange);
-    final String Yellow = this.getString(R.string.Yellow);
-    final String Pink = this.getString(R.string.Pink);
-    final String Approaching = this.getString(R.string.Approaching);
-    final String min = this.getString(R.string.min);
+            new loadtrains().execute();
+    }
     
     class loadtrains extends AsyncTask<Void, Void, Void> {
     	
@@ -172,6 +126,13 @@ public class TestStation extends Activity {
             super.onPreExecute();
             pdLoading.setMessage("Loading...");
             pdLoading.show();
+            
+            Intent intent = getIntent();
+            String value = intent.getExtras().getString("value");
+            
+            Uri my = Uri.parse("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid="+value);
+                    
+            myUrl = my.toString();
         }
 
         @Override
@@ -183,23 +144,32 @@ public class TestStation extends Activity {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	Elements elem = doc.select("eta"); 
+	Elements elem = null;
+	elem = doc.select("eta"); 
+	doc = null;
+	iterator = null;
 	iterator = elem.iterator();
+	times = 0;
+	count = 0;
 	
 	String elemn = elem.text();
 	
 	String findStr = "2013";
 	int lastIndex = 0;
-	Log.i("MYMESSAGE1", String.valueOf(count));
 	while(lastIndex != -1){
-		Log.i("MYMESSAGE2", String.valueOf(elemn));
 	       lastIndex = elemn.indexOf(findStr,lastIndex);
 	       if( lastIndex != -1){
 	             count ++;
 	             Log.i("MYMESSAGE4", String.valueOf(count));
 	             lastIndex+=findStr.length();
 	      }
+	   
+	   	
 	}
+   	times = (count/2);
+   	Log.i("times", String.valueOf(times));
+   	elemn = null;
+   	elem = null;
 	return null;
         }
         
@@ -207,10 +177,68 @@ public class TestStation extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             pdLoading.dismiss();
-	
-	int times = (count/2);
-	Log.i("MYMESSAGE", String.valueOf(times));
-	
+            
+            TextView tv = (TextView) findViewById(R.id.tv);
+            TextView tv1 = (TextView) findViewById(R.id.tv1);
+            TextView tv2 = (TextView) findViewById(R.id.tv2);
+            TextView tv3 = (TextView) findViewById(R.id.tv3);
+            TextView tv4 = (TextView) findViewById(R.id.tv4);
+            TextView tv5 = (TextView) findViewById(R.id.tv5);
+            TextView tv6 = (TextView) findViewById(R.id.tv6);
+            TextView tv7 = (TextView) findViewById(R.id.tv7);
+            TextView tv8 = (TextView) findViewById(R.id.tv8);
+            TextView tv9 = (TextView) findViewById(R.id.tv9);
+            TextView tv10 = (TextView) findViewById(R.id.tv10);
+            TextView tv11 = (TextView) findViewById(R.id.tv11);
+            TextView tv12 = (TextView) findViewById(R.id.tv12);
+            TextView tv13 = (TextView) findViewById(R.id.tv13);
+            TextView tv14 = (TextView) findViewById(R.id.tv14);
+            TextView tv15 = (TextView) findViewById(R.id.tv15);
+            TextView tv16 = (TextView) findViewById(R.id.tv16);
+            TextView tv17 = (TextView) findViewById(R.id.tv17);
+            TextView tv18 = (TextView) findViewById(R.id.tv18);
+            TextView tv19 = (TextView) findViewById(R.id.tv19);
+            TextView tv20 = (TextView) findViewById(R.id.tv20);
+            TextView tv21 = (TextView) findViewById(R.id.tv21);
+            TextView tv22 = (TextView) findViewById(R.id.tv22);
+            TextView tv23 = (TextView) findViewById(R.id.tv23);
+            TextView tv24 = (TextView) findViewById(R.id.tv24);
+            TextView tv25 = (TextView) findViewById(R.id.tv25);
+            TextView tv26 = (TextView) findViewById(R.id.tv26);
+            TextView tv27 = (TextView) findViewById(R.id.tv27);
+            TextView tv28 = (TextView) findViewById(R.id.tv28);
+            TextView tv29 = (TextView) findViewById(R.id.tv29);
+            ImageView iv = (ImageView) findViewById(R.id.imageView);
+            ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
+            ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
+            ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
+            ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
+            ImageView iv5 = (ImageView) findViewById(R.id.imageView5);
+            ImageView iv6 = (ImageView) findViewById(R.id.imageView6);
+            ImageView iv7 = (ImageView) findViewById(R.id.imageView7);
+            ImageView iv8 = (ImageView) findViewById(R.id.imageView8);
+            ImageView iv9 = (ImageView) findViewById(R.id.imageView9);
+            ImageView iv10 = (ImageView) findViewById(R.id.imageView10);
+            ImageView iv11 = (ImageView) findViewById(R.id.imageView11);
+            ImageView iv12 = (ImageView) findViewById(R.id.imageView12);
+            ImageView iv13 = (ImageView) findViewById(R.id.imageView13);
+            ImageView iv14 = (ImageView) findViewById(R.id.imageView14);
+            final String Red = getString(R.string.Red);
+            final String Blue = getString(R.string.Blue);
+            final String Green = getString(R.string.Green);
+            final String Brown = getString(R.string.Brown);
+            final String Purple = getString(R.string.Purple);
+            final String Orange = getString(R.string.Orange);
+            final String Yellow = getString(R.string.Yellow);
+            final String Pink = getString(R.string.Pink);
+            final String Approaching = getString(R.string.Approaching);
+            final String min = getString(R.string.min);
+            
+        	arT.clear();
+        	prT.clear();
+        	DestNm.clear();
+        	rta.clear();
+
 	while(iterator.hasNext()){
 		
 	for (int i=0; i<times;i++){
@@ -462,9 +490,7 @@ public class TestStation extends Activity {
         Elements Rt16 = rta.get(16);
         rt16 = Rt16.text();
         }
-    
-    Log.i("MYMESSAGE3", String.valueOf(rta.size()));
-    
+
     if(rt!=null && !rt.isEmpty()){
     if(rt.contains(Red)){
     iv.setImageResource(R.drawable.red);
@@ -1019,8 +1045,7 @@ public class TestStation extends Activity {
 	 }
 	}
     }
-    new loadtrains().execute();
-    }
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -1045,11 +1070,16 @@ public class TestStation extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
-	public void onBackPressed()
-	{
-    startActivity(new Intent(TestStation.this, StationList.class));
-    finish();
-}
+	public void onRefreshStarted(View view) {
+		new loadtrains().execute();
+		mPullToRefreshAttacher.setRefreshComplete();
+        Log.i("Set Refersh Complete", "Done");
+		
+	}
+	
+	
+	
+
 }
