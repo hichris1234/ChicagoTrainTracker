@@ -17,6 +17,7 @@ public class CustomListViewAdapter extends BaseAdapter {
 	   private class ViewHolder {
 	      TextView textView1;
 	      TextView textView2;
+	      TextView textView3;
 	   }
 
 	   public CustomListViewAdapter(Context context, ArrayList<CustomObject> objects) {
@@ -44,12 +45,14 @@ public View getView(int position, View convertView, ViewGroup parent) {
 	         convertView = inflater.inflate(R.layout.list_item, parent, false);
 	         holder.textView1 = (TextView) convertView.findViewById(R.id.title);
 	        holder.textView2 = (TextView) convertView.findViewById(R.id.desc);
+	        holder.textView3 = (TextView) convertView.findViewById(R.id.time);
 	         convertView.setTag(holder);
 	      } else {
 	         holder = (ViewHolder) convertView.getTag();
 	      }
 	      holder.textView1.setText(objects.get(position).getProp1());
 	      holder.textView2.setText(objects.get(position).getProp2());
+	      holder.textView3.setText(objects.get(position).getProp3());
 	      return convertView;
 	   }
 	}
