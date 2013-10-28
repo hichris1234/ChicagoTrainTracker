@@ -30,23 +30,7 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	
 	private PullToRefreshAttacher mPullToRefreshAttacher;
 	String URL;
-	String URL1;
-	String URL2;
-	String URL3;
-	String URL4;
-	String URL5;
-	String URL6;
-	String URL7;
-	String URL8;
 	Document doc;
-	Document doc1;
-	Document doc2;
-	Document doc3;
-	Document doc4;
-	Document doc5;
-	Document doc6;
-	Document doc7;
-	Document doc8;
     ArrayList<Elements> Alerts = new ArrayList<Elements>();
 	ArrayList<Elements> Names = new ArrayList<Elements>();
 	ArrayList<Elements> Starts = new ArrayList<Elements>();
@@ -240,41 +224,16 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	            String formattedDate = df.format(c.getTime());
 	            Log.i("date", formattedDate);
 	            
-	            URL = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=red&accessibility=false&bystartdate="+formattedDate;
-	            URL1 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=blue&accessibility=false&bystartdate="+formattedDate;
-	            URL2 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=brn&accessibility=false&bystartdate="+formattedDate;
-	            URL3 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=y&accessibility=false&bystartdate="+formattedDate;
-	            URL4 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=p&accessibility=false&bystartdate="+formattedDate;
-	            URL5 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=org&accessibility=false&bystartdate="+formattedDate;
-	            URL6 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=pexp&accessibility=false&bystartdate="+formattedDate;
-	            URL7 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=g&accessibility=false&bystartdate="+formattedDate;
-	            URL8 = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=pink&accessibility=false&bystartdate="+formattedDate;
-
+	            URL = "http://www.transitchicago.com/api/1.0/alerts.aspx?routeid=red,blue,brn,y,p,org,pexp,g,pink&accessibility=false&bystartdate="+formattedDate;
 	        }
 
 	        @Override
 	        protected String doInBackground(Void... params) {
 
 		doc = null;
-		doc1 = null;
-		doc2 = null;
-		doc3 = null;
-		doc4 = null;
-		doc5 = null;
-		doc6 = null;
-		doc7 = null;
-		doc8 = null;
 		
 		try {
 		    doc = Jsoup.connect(URL).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc1 = Jsoup.connect(URL1).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc2 = Jsoup.connect(URL2).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc3 = Jsoup.connect(URL3).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc4 = Jsoup.connect(URL4).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc5 = Jsoup.connect(URL5).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc6 = Jsoup.connect(URL6).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc7 = Jsoup.connect(URL7).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-		    doc8 = Jsoup.connect(URL8).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -291,118 +250,14 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
         	Starts.clear();
             
 		Elements elem1 = doc.select("Alert"); 
-		Elements elem2 = doc1.select("Alert"); 
-		Elements elem3 = doc2.select("Alert"); 
-		Elements elem4 = doc3.select("Alert"); 
-		Elements elem5 = doc4.select("Alert"); 
-		Elements elem6 = doc5.select("Alert"); 
-		Elements elem7 = doc6.select("Alert"); 
-		Elements elem8 = doc7.select("Alert"); 
-		Elements elem9 = doc8.select("Alert"); 
 		
 		Iterator<Element> iterator = elem1.iterator();
-		Iterator<Element> iterator1 = elem2.iterator();
-		Iterator<Element> iterator2 = elem3.iterator();
-		Iterator<Element> iterator3 = elem4.iterator();
-		Iterator<Element> iterator4 = elem5.iterator();
-		Iterator<Element> iterator5 = elem6.iterator();
-		Iterator<Element> iterator6 = elem7.iterator();
-		Iterator<Element> iterator7 = elem8.iterator();
-		Iterator<Element> iterator8 = elem9.iterator();
-
+		
 		while(iterator.hasNext())
 		{ Element div = iterator.next();	    	
 	    Elements Short = div.select("ShortDescription");
 	    Elements Impacted = div.select("ImpactedService");
 	    Elements Start = div.select("EventStart");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-
-		while(iterator1.hasNext())
-		{ Element div = iterator1.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Start = div.select("EventStart");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator2.hasNext())
-		{ Element div = iterator2.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Start = div.select("EventStart");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator3.hasNext())
-		{ Element div = iterator3.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Start = div.select("EventStart");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator4.hasNext())
-		{ Element div = iterator4.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Start = div.select("EventStart");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator5.hasNext())
-		{ Element div = iterator5.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Start = div.select("EventStart");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator6.hasNext())
-		{ Element div = iterator6.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Start = div.select("EventStart");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator7.hasNext())
-		{ Element div = iterator7.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Start = div.select("EventStart");
-	    Elements Impacted = div.select("ImpactedService");
-	    Elements Name = Impacted.select("ServiceName");
-	    Names.add(Name);
-	    Alerts.add(Short);
-	    Starts.add(Start);
-		}
-		
-		while(iterator8.hasNext())
-		{ Element div = iterator8.next();	    	
-	    Elements Short = div.select("ShortDescription");
-	    Elements Start = div.select("EventStart");
-	    Elements Impacted = div.select("ImpactedService");
 	    Elements Name = Impacted.select("ServiceName");
 	    Names.add(Name);
 	    Alerts.add(Short);
@@ -663,7 +518,7 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 			   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 			   SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 			   SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd HH:mm");
-			   SimpleDateFormat dateFormat3 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa aa");
+			   SimpleDateFormat dateFormat3 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
 		try {
 			
 			if (Sta!=null && !Sta.isEmpty()){
@@ -996,4 +851,5 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 		new loaddelays().execute();
 		mPullToRefreshAttacher.setRefreshComplete();
 	}
+	
 }

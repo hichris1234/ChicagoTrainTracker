@@ -1075,8 +1075,6 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 	public void onRefreshStarted(View view) {
 		new loadtrains().execute();
 		mPullToRefreshAttacher.setRefreshComplete();
-        Log.i("Set Refersh Complete", "Done");
-		
 	}
 	
 	

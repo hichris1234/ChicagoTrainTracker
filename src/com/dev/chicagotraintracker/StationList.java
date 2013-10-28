@@ -40,12 +40,9 @@ public class StationList extends Activity {
 		final String Yellow_Line = this.getString(R.string.Yellow_Line);
 		TextView tv0 = (TextView) findViewById(R.id.tv0);
 	    final TextView tv11 = (TextView) findViewById(R.id.tv11); 
-	    final TextView tv12 = (TextView) findViewById(R.id.tv12); 
-	    
-	    
+	    final TextView tv12 = (TextView) findViewById(R.id.tv12);  
 	    
 	    tv0.setText(String.valueOf (Red_Line));
-		
 		
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,7 +51,6 @@ public class StationList extends Activity {
 			
 	        public void onItemSelected(AdapterView<?> arg0, View arg1,
 	                int arg2, long arg3) {
-	            // TODO Auto-generated method stub
 	        	Spinner2.setAdapter(null);
 	        	
 	        	List<String> RedLin = Arrays.asList(getResources().getStringArray(R.array.Red_Line));
@@ -65,66 +61,55 @@ public class StationList extends Activity {
 	        	List<String> PinkLin = Arrays.asList(getResources().getStringArray(R.array.Pink_Line));
 	        	List<String> PurpleLin = Arrays.asList(getResources().getStringArray(R.array.Purple_Line));
 	        	List<String> YellowLin = Arrays.asList(getResources().getStringArray(R.array.Yellow_Line));
-	    	   
-
-
+	    	  
 	                selectedValue = arg0.getItemAtPosition(arg2).toString();
 	                tv11.setText(String.valueOf (selectedValue));
 	                if(selectedValue.equals(Red_Line))
 	                {
-	                    ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,RedLin);
-
+	                    ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,RedLin);
 	                    Spinner2.setAdapter(firstAdapter);
 	                }
 
 	                else if(selectedValue.equals(Blue_Line))
 	               {
-	                	ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,BlueLin);
+	                	ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BlueLin);
 	                  Spinner2.setAdapter(SecondAdapter);
-
 		        }
 	                else if(selectedValue.equals(Green_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,GreenLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,GreenLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 	                else if(selectedValue.equals(Orange_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,OrangeLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,OrangeLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 	                else if(selectedValue.equals(Brown_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,BrownLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BrownLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 	                else if(selectedValue.equals(Pink_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,PinkLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PinkLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 	                else if(selectedValue.equals(Purple_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,PurpleLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PurpleLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 	                else if(selectedValue.equals(Yellow_Line))
 		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_item,YellowLin);
+		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,YellowLin);
 		                  Spinner2.setAdapter(SecondAdapter);
-
 			        }
 		    }
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -132,7 +117,6 @@ public class StationList extends Activity {
 		       
 	        public void onItemSelected(AdapterView<?> arg0, View arg1,
 	                int arg2, long arg3) {
-	            // TODO Auto-generated method stub
 	        	
 	        	String[] Red_Li = getResources().getStringArray(R.array.Red_Line);
                 String[] Red_ID = getResources().getStringArray(R.array.Red_ID);
@@ -239,16 +223,7 @@ public class StationList extends Activity {
 		                value = myMap.get(selectedValue1);
 		                tv12.setText(String.valueOf (value));
 
-			        }
-	                
-	                
-
-
-
-	                
-	                
-	                
-	                
+			        }        
 		    }
 
 			@Override
@@ -256,12 +231,8 @@ public class StationList extends Activity {
 				// TODO Auto-generated method stub
 				
 			}
-		});
-	
-	        
+		});    
 	}
-
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -286,11 +257,6 @@ public class StationList extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
-
-
-	
 	
     public void sendTest(View a) {
         Intent Intent9 = new Intent(StationList.this, TestStation.class);

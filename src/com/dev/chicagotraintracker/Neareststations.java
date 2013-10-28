@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +30,7 @@ public class Neareststations extends Activity implements LocationListener {
 	
 	String distancea;
 	String distance1;
-	
+    static Map<String, String> myMap1 = new HashMap<String, String>();
     
     static ArrayList<Double> distancetos = new ArrayList<Double>();
 	
@@ -54,6 +53,14 @@ public class Neareststations extends Activity implements LocationListener {
 		
         List<String> Lat1 = Arrays.asList(getResources().getStringArray(R.array.Latitude));
         Log.i("Lat1", String.valueOf(Lat1.get(0)));
+        
+        String[] Stations = getResources().getStringArray(R.array.Stations);
+        String[] Longitude = getResources().getStringArray(R.array.Longitude);
+        
+        for (int h = 0; h <144; h++) {
+        	myMap1.put(Stations[h], Longitude[h]);
+
+        }
 
 	
 
@@ -143,21 +150,21 @@ public class Neareststations extends Activity implements LocationListener {
     	            Log.i("distance1after", String.valueOf(distance1));
     	            
     			
-    	        String[] Stations = getResources().getStringArray(R.array.Stations);
-    	        String[] Longitude = getResources().getStringArray(R.array.Longitude);
+    	        String[] Stations1 = getResources().getStringArray(R.array.Stations);
+    	        String[] Longitude1 = getResources().getStringArray(R.array.Longitude);
     	        String[] Latitude = getResources().getStringArray(R.array.Latitude);
     	        
     	    
 
     	        Map<String, String> myMap = new HashMap<String, String>();{
     	        for (int i = 0; i <144; i++) {
-    	        	myMap.put(Latitude[i], Stations[i]);
+    	        	myMap.put(Latitude[i], Stations1[i]);
     	        }
     	        }
     		    
     	        Map<String, String> myMap1 = new HashMap<String, String>();{
     	        for (int h = 0; h <144; h++) {
-    	        	myMap1.put(Longitude[h], Stations[h]);
+    	        	myMap1.put(Longitude1[h], Stations1[h]);
 
     	        }
     	        }
@@ -204,5 +211,57 @@ public class Neareststations extends Activity implements LocationListener {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public static class GenericCachedSorter {
+	public static void main(String[] args) {
+	        sort(distancetos, new ToComparable<Double, Double>() {
+	            @Override
+	            public Double toComparable(Double distance) {
+	                // return the longitude associated with this distance
+	                return (Double.parseDouble(myMap1.get(distance)));
+	            }
+	        });
+
+	        for (Double distance : distancetos)
+	            System.out.println(distancetos);
+	    }
+	
+	  public interface ToComparable<T, C extends Comparable<? super C>> {
+        C toComparable(T t);
+      }
+
+	    public static <T, C extends Comparable<? super C>> void sort(List<T> list, ToComparable<T, C> function) {
+	       class Pair implements Comparable<Pair> {
+	          final T original;
+	          final C comparable;
+
+	          Pair(T original, C comparable) {
+	             this.original = original;
+	             this.comparable = comparable;
+	          }
+
+	          @Override
+	          public int compareTo(Pair other) {
+	                return
+	                  comparable == null && other.comparable == null ? 0 :
+	                  comparable == null ? -1 :
+	                  other.comparable == null ? 1 :
+	                  comparable.compareTo(other.comparable);
+	          }
+	       }
+
+	       List<Pair> pairs = new ArrayList<Pair>(list.size());
+	       for (T original : list)
+	          pairs.add(new Pair(original, function.toComparable(original)));
+
+	       Collections.sort(pairs);
+
+	       ListIterator<T> iter = list.listIterator();
+	       for (Pair pair : pairs) {
+	          iter.next();
+	          iter.set(pair.original);
+	       }
+	    }
 	}
 }
