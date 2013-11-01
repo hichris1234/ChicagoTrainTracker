@@ -178,8 +178,8 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             super.onPostExecute(result);
             pdLoading.dismiss();
             
-            TextView tv = (TextView) findViewById(R.id.tv);
-            TextView tv1 = (TextView) findViewById(R.id.tv1);
+            TextView tv = (TextView) findViewById(R.id.tv1);
+            TextView tv1 = (TextView) findViewById(R.id.tv);
             TextView tv2 = (TextView) findViewById(R.id.tv2);
             TextView tv3 = (TextView) findViewById(R.id.tv3);
             TextView tv4 = (TextView) findViewById(R.id.tv4);
@@ -947,7 +947,13 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             Date date2 = sdf.parse(prdt3.text());
             long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
             String dateDif = sdf1.format(dateDiff);
+    	    
+    	    if(String.valueOf(dateDif).equals(min)) {
+            	tv7.setText(String.valueOf (Approaching));
+            }
+            else{
     	    tv7.setText(String.valueOf (dateDif));
+        	}
         	}
     	
     	if(arrT4!=null && !arrT4.isEmpty()){
@@ -955,7 +961,13 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             Date date2 = sdf.parse(prdt4.text());
             long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
             String dateDif = sdf1.format(dateDiff);
+    	    
+    	    if(String.valueOf(dateDif).equals(min)) {
+            	tv9.setText(String.valueOf (Approaching));
+            }
+            else{
     	    tv9.setText(String.valueOf (dateDif));
+        	}
         	}
     	
     	if(arrT5!=null && !arrT5.isEmpty()){
@@ -963,7 +975,13 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             Date date2 = sdf.parse(prdt5.text());
             long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
             String dateDif = sdf1.format(dateDiff);
+    	    
+    	    if(String.valueOf(dateDif).equals(min)) {
+            	tv11.setText(String.valueOf (Approaching));
+            }
+            else{
     	    tv11.setText(String.valueOf (dateDif));
+        	}
         	}
     	
     	if(arrT6!=null && !arrT6.isEmpty()){

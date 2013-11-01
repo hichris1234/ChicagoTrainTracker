@@ -34,17 +34,9 @@ public class Neareststations extends Activity implements LocationListener {
     
     static ArrayList<Double> distancetos = new ArrayList<Double>();
 	
-
-    public interface ToComparable<T, C extends Comparable<C>> {
-         C toComparable(T t);
-    }
-	
 	@SuppressLint("NewApi")
+	
 	@Override
-	
-	
-	
-
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.neareststations);
@@ -170,6 +162,10 @@ public class Neareststations extends Activity implements LocationListener {
     	        }
     	        
     	        String value = myMap1.get(Longa);
+    	        
+    	        GenericCachedSorter sort = new GenericCachedSorter();
+    	        sort.SortingHere();
+    	        
 	            Log.i("Longa", String.valueOf(Longa));
 	            Log.i("Longa", String.valueOf(myMap1));
 	            Log.i("value", String.valueOf(value));
@@ -214,7 +210,7 @@ public class Neareststations extends Activity implements LocationListener {
 	}
 
 	public static class GenericCachedSorter {
-	public static void main(String[] args) {
+		public void SortingHere() {
 	        sort(distancetos, new ToComparable<Double, Double>() {
 	            @Override
 	            public Double toComparable(Double distance) {
