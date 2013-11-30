@@ -56,7 +56,6 @@ public class Neareststations extends Activity{
     String distance8;
     String station9;
     String distance9;
-    
 	
 	@SuppressLint("NewApi")
 	
@@ -80,14 +79,9 @@ public class Neareststations extends Activity{
 			        	
 				        longitude = location.getLongitude();
 				        latitude = location.getLatitude();
-			        	Log.i("MYTAG", String.valueOf(longitude));
-			        	Log.i("MYTAG", String.valueOf(latitude));
 
-		    	        
 		    	        List<String> Long = Arrays.asList(getResources().getStringArray(R.array.Longitude));
 		    	        List<String> Lat = Arrays.asList(getResources().getStringArray(R.array.Latitude));
-		    	        
-		    	        Log.i("Long1", String.valueOf(Long.get(0)));
 		    	       
 		    	        Iterator<String> iterator = Lat.iterator();
 		    	        Iterator<String> iterator1 = Long.iterator();
@@ -120,28 +114,16 @@ public class Neareststations extends Activity{
 		    	        locationB.setLongitude(lon_end);  
 
 		    	        distance = locationA.distanceTo(locationB) * 0.000621371192237334;
-		    	        String dista = Double.toString(distance);
-		    	        distancetos.add(Double.parseDouble(dista));
+		    	        distance = (double)Math.round(distance * 100) / 100;
+		    	        distancetos.add(distance);
 		    		    }
 		    	        }
 		    	            Collections.sort(distancetos);
-		    	            
 		    	            distancea = distancetos.get(0).toString();
 		    	            
 		    	            String Longa = longitudeArray.get(0).toString();
-		    	            String Long1 = longitudeArray.get(1).toString();
 		
 		    	        String[] Stations1 = getResources().getStringArray(R.array.Stations);
-		    	        String[] Longitude1 = getResources().getStringArray(R.array.Longitude);
-		    	        String[] Latitude = getResources().getStringArray(R.array.Latitude);
-		    	        
-		    	    
-
-		    	        Map<String, String> myMap = new TreeMap<String, String>();{
-		    	        for (int i = 0; i <144; i++) {
-		    	        	myMap.put(Latitude[i], Stations1[i]);
-		    	        }
-		    	        }
 		    		    
 		    	        int h = 0;
 		    	        Map<Double, String> myMap1 = new TreeMap<Double, String>();{
@@ -193,16 +175,11 @@ public class Neareststations extends Activity{
 	        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
 	        	longitude = location.getLongitude();
 		        latitude = location.getLatitude();
-		        	
 			        longitude = location.getLongitude();
 			        latitude = location.getLatitude();
-		        	Log.i("MYTAG", String.valueOf(longitude));
-		        	Log.i("MYTAG", String.valueOf(latitude));
 	    	        
 	    	        List<String> Long = Arrays.asList(getResources().getStringArray(R.array.Longitude));
 	    	        List<String> Lat = Arrays.asList(getResources().getStringArray(R.array.Latitude));
-	    	        
-	    	        Log.i("Long1", String.valueOf(Long.get(0)));
 	    	       
 	    	        Iterator<String> iterator = Lat.iterator();
 	    	        Iterator<String> iterator1 = Long.iterator();
@@ -233,14 +210,11 @@ public class Neareststations extends Activity{
 	    	        locationB.setLongitude(lon_end);  
 
 	    	        distance = locationA.distanceTo(locationB) * 0.000621371192237334;
-	    	        String dista = Double.toString(distance);
-	    	        distancetos.add(Double.parseDouble(dista));
+	    	        distance = (double)Math.round(distance * 100) / 100;
+	    	        distancetos.add(distance);
 	    		    }
 	    	        }
 	    	            Collections.sort(distancetos);
-	    	            distancea = distancetos.get(0).toString();
-	    	            
-	    	            String Longa = longitudeArray.get(0).toString();
 	
 	    	        String[] Stations1 = getResources().getStringArray(R.array.Stations);
 	    	        String[] Longitude1 = getResources().getStringArray(R.array.Longitude);
@@ -282,9 +256,8 @@ public class Neareststations extends Activity{
 	    	        distance8 = String.valueOf(myMap1.keySet().toArray()[8]);
 	    	        station9 = String.valueOf(myMap1.values().toArray()[9]);
 	    	        distance9 = String.valueOf(myMap1.keySet().toArray()[9]);
-	    	        
-		            Log.i("Longa", String.valueOf(Longa));
-		            Log.i("Longa", String.valueOf(myMap1));
+	    	       
+		            Log.i("myMap1", String.valueOf(myMap1));
 		            Log.i("value", String.valueOf(value));
 		            progress.dismiss();
 		            this.takeItBack(null);
