@@ -40,12 +40,5 @@ public class Tripplanner extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	@Override
-	public void onBackPressed()
-	{
-    startActivity(new Intent(Tripplanner.this, MainActivity.class));
-    finish();
-}
 
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class CustomListViewAdapter extends BaseAdapter {
 
 	   private LayoutInflater inflater;
-	  private ArrayList<CustomObject> objects;
+	   private ArrayList<CustomObject> objects;
 
 	   private class ViewHolder {
 	      TextView textView1;
@@ -41,12 +41,12 @@ public class CustomListViewAdapter extends BaseAdapter {
 public View getView(int position, View convertView, ViewGroup parent) {
 	      ViewHolder holder = null;
 	      if(convertView == null) {
-	         holder = new ViewHolder();
-	         convertView = inflater.inflate(R.layout.list_item, parent, false);
-	         holder.textView1 = (TextView) convertView.findViewById(R.id.title);
-	        holder.textView2 = (TextView) convertView.findViewById(R.id.desc);
-	        holder.textView3 = (TextView) convertView.findViewById(R.id.time);
-	         convertView.setTag(holder);
+	          holder = new ViewHolder();
+	          convertView = inflater.inflate(R.layout.list_item, parent, false);
+	          holder.textView1 = (TextView) convertView.findViewById(R.id.title);
+	          holder.textView2 = (TextView) convertView.findViewById(R.id.desc);
+	          holder.textView3 = (TextView) convertView.findViewById(R.id.time);
+	          convertView.setTag(holder);
 	      } else {
 	         holder = (ViewHolder) convertView.getTag();
 	      }
