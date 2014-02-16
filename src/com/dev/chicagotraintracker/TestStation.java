@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import org.jsoup.Jsoup;
@@ -14,11 +15,16 @@ import org.jsoup.select.Elements;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -99,6 +105,15 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 	
 	private PullToRefreshAttacher mPullToRefreshAttacher;
 	
+	public boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
+	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -114,7 +129,23 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             // listener (this).
             ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
             
-            new loadtrains().execute();
+            if(isOnline() == true){
+                new loadtrains().execute();
+            }
+            else{
+            	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            	// Add the buttons
+            	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            	           public void onClick(DialogInterface dialog, int id) {
+            	               finish();
+            	               TestStation.this.overridePendingTransition(0, android.R.anim.fade_out);
+            	           }
+            	       });
+            	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+                .setTitle("You're not connected");
+            	AlertDialog dialog = builder.create();
+            	dialog.show();
+            }
     }
     
     class loadtrains extends AsyncTask<Void, Void, Void> {
@@ -138,40 +169,38 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         @Override
         protected Void doInBackground(Void... params) {
 
-	try {
-	    doc = Jsoup.connect(myUrl).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	Elements elem = null;
-	elem = doc.select("eta"); 
-	doc = null;
-	iterator = null;
-	iterator = elem.iterator();
-	times = 0;
-	count = 0;
+	        try {
+	            doc = Jsoup.connect(myUrl).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
+	        } catch (IOException e) {
+		        e.printStackTrace();
+	        }
+			Elements elem = null;
+			elem = doc.select("eta");
+			iterator = elem.iterator();
+			times = 0;
+			count = 0;
 	
-	String elemn = elem.text();
-	
-	String findStr = "2013";
-	int lastIndex = 0;
-	while(lastIndex != -1){
-	       lastIndex = elemn.indexOf(findStr,lastIndex);
-	       if( lastIndex != -1){
-	             count ++;
-	             Log.i("MYMESSAGE4", String.valueOf(count));
-	             lastIndex+=findStr.length();
-	      }
-	   
-	   	
-	}
-   	times = (count/2);
-   	Log.i("times", String.valueOf(times));
-   	elemn = null;
-   	elem = null;
-	return null;
-        }
+			String elemn = elem.text();
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy");
+			String formattedDate = df.format(c.getTime());
+			Log.i("date", formattedDate);
+
+			String findStr = formattedDate;
+			int lastIndex = 0;
+			while (lastIndex != -1) {
+				lastIndex = elemn.indexOf(findStr, lastIndex);
+				if (lastIndex != -1) {
+					count++;
+					Log.i("MYMESSAGE4", String.valueOf(count));
+					lastIndex += findStr.length();
+				}
+			}
+
+			times = (count / 2);
+			Log.i("times", String.valueOf(times));
+			return null;
+		}
         
         @Override
         protected void onPostExecute(Void result) {
@@ -239,21 +268,19 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         	DestNm.clear();
         	rta.clear();
 
-	while(iterator.hasNext()){
-		
-	for (int i=0; i<times;i++){
-
-	Element div = iterator.next();
-    Elements arrT = div.select("arrT");
-    arT.add(arrT);
-    Elements prdt = div.select("prdt");
-    prT.add(prdt);
-    Elements destNm = div.select("destNm");
-    DestNm.add(destNm);
-    Elements rt = div.select("rt");
-    rta.add(rt);
-	}
-	}
+			while (iterator.hasNext()) {
+				for (int i = 0; i < times; i++) {
+					Element div = iterator.next();
+					Elements arrT = div.select("arrT");
+					arT.add(arrT);
+					Elements prdt = div.select("prdt");
+					prT.add(prdt);
+					Elements destNm = div.select("destNm");
+					DestNm.add(destNm);
+					Elements rt = div.select("rt");
+					rta.add(rt);
+				}
+			}
 
     if(arT.size() > 0 && arT.get(0) != null){
     arrT = arT.get(0);
@@ -483,13 +510,13 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
     rt14 = Rt14.text();
     }
     if(rta.size() > 15 && rta.get(15) != null){
-        Elements Rt15 = rta.get(15);
-        rt15 = Rt15.text();
-        }
+    Elements Rt15 = rta.get(15);
+    rt15 = Rt15.text();
+    }
     if(rta.size() > 16 && rta.get(16) != null){
         Elements Rt16 = rta.get(16);
         rt16 = Rt16.text();
-        }
+    }
 
     if(rt!=null && !rt.isEmpty()){
     if(rt.contains(Red)){
@@ -1058,12 +1085,10 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 	    }
 
     catch (ParseException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	 }
 	}
     }
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -1091,11 +1116,23 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 
 	@Override
 	public void onRefreshStarted(View view) {
-		new loadtrains().execute();
+		if(isOnline() == true){
+            new loadtrains().execute();
+        }
+        else{
+        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        	// Add the buttons
+        	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+        	           public void onClick(DialogInterface dialog, int id) {
+        	               // we don't need to do anything here since the user had internet at one time (the origional load)
+        	           }
+        	       });
+        	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+            .setTitle("You're not connected");
+        	AlertDialog dialog = builder.create();
+        	dialog.show();
+        }
 		mPullToRefreshAttacher.setRefreshComplete();
 	}
 	
-	
-	
-
 }

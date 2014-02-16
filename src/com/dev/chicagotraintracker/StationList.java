@@ -262,7 +262,7 @@ public class StationList extends Activity {
         Intent Intent9 = new Intent(StationList.this, TestStation.class);
         Intent9.putExtra("value", value);
         startActivityForResult(Intent9, 0); 
-        }
+    }
 
 	}
 	

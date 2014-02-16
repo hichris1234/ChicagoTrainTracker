@@ -15,10 +15,15 @@ import org.jsoup.select.Elements;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefreshListener;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -123,6 +128,15 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	String Sta18;
 	String Sta19;
 	String Sta20;
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +144,23 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 		setContentView(R.layout.delay);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	            lv = (ListView) findViewById(R.id.lv);
-	            new loaddelays().execute();
+	            if(isOnline() == true){
+	                new loaddelays().execute();
+	            }
+	            else{
+	            	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	            	// Add the buttons
+	            	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+	            	           public void onClick(DialogInterface dialog, int id) {
+	            	               finish();
+	            	               Delay.this.overridePendingTransition(0, android.R.anim.fade_out);
+	            	           }
+	            	       });
+	            	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+	                .setTitle("You're not connected");
+	            	AlertDialog dialog = builder.create();
+	            	dialog.show();
+	            }
 
 	            ListView scrollableView = lv;
 	            mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
@@ -263,7 +293,7 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	    Alerts.add(Short);
 	    Starts.add(Start);
 		}
-		
+
 		   if(Alerts.size() > 0 && Alerts.get(0) != null){
 		        Al = Alerts.get(0).text();
 		    }
@@ -848,7 +878,22 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 
 	@Override
 	public void onRefreshStarted(View view) {
-		new loaddelays().execute();
+		 if(isOnline() == true){
+             new loaddelays().execute();
+         }
+         else{
+         	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+         	// Add the buttons
+         	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+         	           public void onClick(DialogInterface dialog, int id) {
+                           // we don't need to do anything here since the user had internet at one time (the origional load)
+         	           }
+         	       });
+         	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+             .setTitle("You're not connected");
+         	AlertDialog dialog = builder.create();
+         	dialog.show();
+         }
 		mPullToRefreshAttacher.setRefreshComplete();
 	}
 	
