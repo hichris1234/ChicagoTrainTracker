@@ -42,7 +42,7 @@ public class StationList extends Activity {
 	    final TextView tv11 = (TextView) findViewById(R.id.tv11); 
 	    final TextView tv12 = (TextView) findViewById(R.id.tv12);  
 	    
-	    tv0.setText(String.valueOf (Red_Line));
+	    tv0.setText(Red_Line);
 		
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,54 +62,45 @@ public class StationList extends Activity {
 	        	List<String> PurpleLin = Arrays.asList(getResources().getStringArray(R.array.Purple_Line));
 	        	List<String> YellowLin = Arrays.asList(getResources().getStringArray(R.array.Yellow_Line));
 	    	  
-	                selectedValue = arg0.getItemAtPosition(arg2).toString();
-	                tv11.setText(String.valueOf (selectedValue));
-	                if(selectedValue.equals(Red_Line))
-	                {
-	                    ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,RedLin);
-	                    Spinner2.setAdapter(firstAdapter);
-	                }
-
-	                else if(selectedValue.equals(Blue_Line))
-	               {
-	                	ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BlueLin);
-	                  Spinner2.setAdapter(SecondAdapter);
-		        }
-	                else if(selectedValue.equals(Green_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,GreenLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
-	                else if(selectedValue.equals(Orange_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,OrangeLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
-	                else if(selectedValue.equals(Brown_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BrownLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
-	                else if(selectedValue.equals(Pink_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PinkLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
-	                else if(selectedValue.equals(Purple_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PurpleLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
-	                else if(selectedValue.equals(Yellow_Line))
-		               {
-		                  ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,YellowLin);
-		                  Spinner2.setAdapter(SecondAdapter);
-			        }
+	        	selectedValue = arg0.getItemAtPosition(arg2).toString();
+	        	tv11.setText(selectedValue);
+	        	if(selectedValue.equals(Red_Line)){
+	        		ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,RedLin);
+	        		Spinner2.setAdapter(firstAdapter);
+	        	}
+	        	else if(selectedValue.equals(Blue_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BlueLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Green_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,GreenLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Orange_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,OrangeLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Brown_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BrownLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Pink_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PinkLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Purple_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PurpleLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
+	        	else if(selectedValue.equals(Yellow_Line)){
+	        		ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,YellowLin);
+	        		Spinner2.setAdapter(SecondAdapter);
+	        	}
 		    }
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
+				// there should never be nothing selected
 			}
 		});
 		
@@ -119,117 +110,101 @@ public class StationList extends Activity {
 	                int arg2, long arg3) {
 	        	
 	        	String[] Red_Li = getResources().getStringArray(R.array.Red_Line);
-                String[] Red_ID = getResources().getStringArray(R.array.Red_ID);
+	        	String[] Red_ID = getResources().getStringArray(R.array.Red_ID);
 	        	String[] Blue_Li = getResources().getStringArray(R.array.Blue_Line);
-                String[] Blue_ID = getResources().getStringArray(R.array.Blue_ID);
+	        	String[] Blue_ID = getResources().getStringArray(R.array.Blue_ID);
 	        	String[] Green_Li = getResources().getStringArray(R.array.Green_Line);
-                String[] Green_ID = getResources().getStringArray(R.array.Green_ID);
+	        	String[] Green_ID = getResources().getStringArray(R.array.Green_ID);
 	        	String[] Orange_Li = getResources().getStringArray(R.array.Orange_Line);
-                String[] Orange_ID = getResources().getStringArray(R.array.Orange_ID);
+	        	String[] Orange_ID = getResources().getStringArray(R.array.Orange_ID);
 	        	String[] Brown_Li = getResources().getStringArray(R.array.Brown_Line);
-                String[] Brown_ID = getResources().getStringArray(R.array.Brown_ID);
+	        	String[] Brown_ID = getResources().getStringArray(R.array.Brown_ID);
 	        	String[] Pink_Li = getResources().getStringArray(R.array.Pink_Line);
-                String[] Pink_ID = getResources().getStringArray(R.array.Pink_ID);
+	        	String[] Pink_ID = getResources().getStringArray(R.array.Pink_ID);
 	        	String[] Purple_Li = getResources().getStringArray(R.array.Purple_Line);
-                String[] Purple_ID = getResources().getStringArray(R.array.Purple_ID);
-                String[] Yellow_Li = getResources().getStringArray(R.array.Yellow_Line);
-                String[] Yellow_ID = getResources().getStringArray(R.array.Yellow_ID);
+	        	String[] Purple_ID = getResources().getStringArray(R.array.Purple_ID);
+	        	String[] Yellow_Li = getResources().getStringArray(R.array.Yellow_Line);
+	        	String[] Yellow_ID = getResources().getStringArray(R.array.Yellow_ID);
 
-	                String selectedValue1 = arg0.getItemAtPosition(arg2).toString();
+	        	String selectedValue1 = arg0.getItemAtPosition(arg2).toString();
 	                
-	                if(selectedValue.equals(Red_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Red_Li.length; i++) {
-		                    myMap.put(Red_Li[i], Red_ID[i]);
-		               }
+	        	if(selectedValue.equals(Red_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Red_Li.length; i++) {
+	        			myMap.put(Red_Li[i], Red_ID[i]);
+	        		}
 
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Blue_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Blue_Li.length; i++) {
+	        			myMap.put(Blue_Li[i], Blue_ID[i]);
+	        		}
 
-			        }
-	                else if(selectedValue.equals(Blue_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Blue_Li.length; i++) {
-		                    myMap.put(Blue_Li[i], Blue_ID[i]);
-		               }
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Green_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Green_Li.length; i++) {
+	        			myMap.put(Green_Li[i], Green_ID[i]);
+	        		}
 
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Orange_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Orange_Li.length; i++) {
+	        			myMap.put(Orange_Li[i], Orange_ID[i]);
+	        		}
 
-			        }
-	                else if(selectedValue.equals(Green_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Green_Li.length; i++) {
-		                    myMap.put(Green_Li[i], Green_ID[i]);
-		               }
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Brown_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Brown_Li.length; i++) {
+	        			myMap.put(Brown_Li[i], Brown_ID[i]);
+	        		}
 
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Pink_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Pink_Li.length; i++) {
+	        			myMap.put(Pink_Li[i], Pink_ID[i]);
+	        		}
 
-			        }
-	                else if(selectedValue.equals(Orange_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Orange_Li.length; i++) {
-		                    myMap.put(Orange_Li[i], Orange_ID[i]);
-		               }
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Purple_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Purple_Li.length; i++) {
+	        			myMap.put(Purple_Li[i], Purple_ID[i]);
+	        		}
 
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
-			        }
-	                else if(selectedValue.equals(Brown_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Brown_Li.length; i++) {
-		                    myMap.put(Brown_Li[i], Brown_ID[i]);
-		               }
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}
+	        	else if(selectedValue.equals(Yellow_Line)){
+	        		Map<String, String> myMap = new HashMap<String, String>();
+	        		for (int i = 0; i < Yellow_Li.length; i++) {
+	        			myMap.put(Yellow_Li[i], Yellow_ID[i]);
+	        		}
 
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
-			        }
-	                else if(selectedValue.equals(Pink_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Pink_Li.length; i++) {
-		                    myMap.put(Pink_Li[i], Pink_ID[i]);
-		               }
-
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
-
-			        }
-	                else if(selectedValue.equals(Purple_Line))
-		               {
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Purple_Li.length; i++) {
-		                    myMap.put(Purple_Li[i], Purple_ID[i]);
-		               }
-
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
-
-			        }
-	                else if(selectedValue.equals(Yellow_Line))
-		               {
-	                	
-		                Map<String, String> myMap = new HashMap<String, String>();
-		                for (int i = 0; i < Yellow_Li.length; i++) {
-		                    myMap.put(Yellow_Li[i], Yellow_ID[i]);
-		               }
-
-		                value = myMap.get(selectedValue1);
-		                tv12.setText(String.valueOf (value));
-
-			        }        
+	        		value = myMap.get(selectedValue1);
+	        		tv12.setText(value);
+	        	}        
 		    }
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
+				// there should never be nothing selected
 			}
 		});    
 	}
@@ -265,5 +240,3 @@ public class StationList extends Activity {
     }
 
 	}
-	
-
