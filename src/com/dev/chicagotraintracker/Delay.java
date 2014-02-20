@@ -125,7 +125,6 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	            pdLoading.show();
 	            
 	            Calendar c = Calendar.getInstance();
-
 	            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
 	            c.add(Calendar.DATE, 2);
 	            String formattedDate = df.format(c.getTime());

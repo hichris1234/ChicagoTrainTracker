@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import org.jsoup.Jsoup;
@@ -26,7 +25,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,10 +97,8 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             
             Intent intent = getIntent();
             String value = intent.getExtras().getString("value");
-            
-            Uri my = Uri.parse("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid="+value);
-                    
-            myUrl = my.toString();
+
+            myUrl = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid="+value;
         }
 
         @Override
@@ -115,28 +111,6 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 			Elements elem = null;
 			elem = doc.select("eta");
 			iterator = elem.iterator();
-			times = 0;
-			count = 0;
-	
-			String elemn = elem.text();
-			Calendar c = Calendar.getInstance();
-			SimpleDateFormat df = new SimpleDateFormat("yyyy");
-			String formattedDate = df.format(c.getTime());
-			Log.i("date", formattedDate);
-
-			String findStr = formattedDate;
-			int lastIndex = 0;
-			while (lastIndex != -1) {
-				lastIndex = elemn.indexOf(findStr, lastIndex);
-				if (lastIndex != -1) {
-					count++;
-					Log.i("MYMESSAGE4", String.valueOf(count));
-					lastIndex += findStr.length();
-				}
-			}
-
-			times = (count / 2);
-			Log.i("times", String.valueOf(times));
 			return null;
 		}
         
@@ -198,17 +172,15 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         	rta.clear();
 
 			while (iterator.hasNext()) {
-				for (int i = 0; i < times; i++) {
-					Element div = iterator.next();
-					Elements arrT = div.select("arrT");
-					arT.add(arrT);
-					Elements prdt = div.select("prdt");
-					prT.add(prdt);
-					Elements destNm = div.select("destNm");
-					DestNm.add(destNm);
-					Elements rt = div.select("rt");
-					rta.add(rt);
-				}
+				Element div = iterator.next();
+				Elements arrT = div.select("arrT");
+				arT.add(arrT);
+				Elements prdt = div.select("prdt");
+				prT.add(prdt);
+				Elements destNm = div.select("destNm");
+				DestNm.add(destNm);
+				Elements rt = div.select("rt");
+				rta.add(rt);
 			}
 			
 			int num = -1;
