@@ -3,14 +3,12 @@ package com.dev.chicagotraintracker;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 @SuppressLint("NewApi")
 public class Screenmap extends Activity {
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +41,4 @@ public class Screenmap extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	@Override
-	public void onBackPressed()
-	{
-    startActivity(new Intent(Screenmap.this, MainActivity.class));
-    finish();
-}
-
-
 }

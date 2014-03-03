@@ -1,9 +1,7 @@
 package com.dev.chicagotraintracker;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -53,9 +51,7 @@ public class StationList extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
-			
-	        public void onItemSelected(AdapterView<?> arg0, View arg1,
-	                int arg2, long arg3) {
+	        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 	        	Spinner2.setAdapter(null);
 	        	
 	        	List<String> RedLin = Arrays.asList(getResources().getStringArray(R.array.Red_Line));
@@ -110,26 +106,7 @@ public class StationList extends Activity {
 		});
 		
 		Spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
-		       
-	        public void onItemSelected(AdapterView<?> arg0, View arg1,
-	                int arg2, long arg3) {
-	        	
-	        	String[] Red_Li = getResources().getStringArray(R.array.Red_Line);
-	        	String[] Red_ID = getResources().getStringArray(R.array.Red_ID);
-	        	String[] Blue_Li = getResources().getStringArray(R.array.Blue_Line);
-	        	String[] Blue_ID = getResources().getStringArray(R.array.Blue_ID);
-	        	String[] Green_Li = getResources().getStringArray(R.array.Green_Line);
-	        	String[] Green_ID = getResources().getStringArray(R.array.Green_ID);
-	        	String[] Orange_Li = getResources().getStringArray(R.array.Orange_Line);
-	        	String[] Orange_ID = getResources().getStringArray(R.array.Orange_ID);
-	        	String[] Brown_Li = getResources().getStringArray(R.array.Brown_Line);
-	        	String[] Brown_ID = getResources().getStringArray(R.array.Brown_ID);
-	        	String[] Pink_Li = getResources().getStringArray(R.array.Pink_Line);
-	        	String[] Pink_ID = getResources().getStringArray(R.array.Pink_ID);
-	        	String[] Purple_Li = getResources().getStringArray(R.array.Purple_Line);
-	        	String[] Purple_ID = getResources().getStringArray(R.array.Purple_ID);
-	        	String[] Yellow_Li = getResources().getStringArray(R.array.Yellow_Line);
-	        	String[] Yellow_ID = getResources().getStringArray(R.array.Yellow_ID);
+	        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 	        	String line = null;
 	        	
 	        	if(selectedValue.equals(Red_Line)){
@@ -162,83 +139,10 @@ public class StationList extends Activity {
 	        	String query = "StationName = '"+selectedValue1+"' AND "+line+" = 1";
 	            Cursor station = db.executeQuery(id, query);
 	            for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
-		            Log.i("station", station.getString(station.getColumnIndex("Id")));
-		            //value = station.getString(station.getColumnIndex("Id"));
+		            Log.i("station", "Station Name: "+selectedValue1+" Id: "+station.getString(station.getColumnIndex("Id")));
+		            value = station.getString(station.getColumnIndex("Id"));
 	            }
-	            //tv12.setText(value);
-	            
-	        	if(selectedValue.equals(Red_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Red_Li.length; i++) {
-	        			myMap.put(Red_Li[i], Red_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Blue_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Blue_Li.length; i++) {
-	        			myMap.put(Blue_Li[i], Blue_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Green_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Green_Li.length; i++) {
-	        			myMap.put(Green_Li[i], Green_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Orange_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Orange_Li.length; i++) {
-	        			myMap.put(Orange_Li[i], Orange_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Brown_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Brown_Li.length; i++) {
-	        			myMap.put(Brown_Li[i], Brown_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Pink_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Pink_Li.length; i++) {
-	        			myMap.put(Pink_Li[i], Pink_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Purple_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Purple_Li.length; i++) {
-	        			myMap.put(Purple_Li[i], Purple_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}
-	        	else if(selectedValue.equals(Yellow_Line)){
-	        		Map<String, String> myMap = new HashMap<String, String>();
-	        		for (int i = 0; i < Yellow_Li.length; i++) {
-	        			myMap.put(Yellow_Li[i], Yellow_ID[i]);
-	        		}
-
-	        		value = myMap.get(selectedValue1);
-	        		tv12.setText(value);
-	        	}        
+	            tv12.setText(value);
 		    }
 
 			@Override
@@ -279,4 +183,4 @@ public class StationList extends Activity {
         startActivityForResult(Intent9, 0); 
     }
 
-	}
+}
