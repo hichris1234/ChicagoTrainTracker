@@ -307,6 +307,7 @@ public class Neareststations extends Activity{
 	
 	@Override
 	protected void onDestroy(){
+		super.onDestroy();
         mLocationManager.removeUpdates(locationListener);
 	}
 }

@@ -8,6 +8,8 @@ import java.util.Map;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +23,15 @@ import android.support.v4.app.NavUtils;
 public class StationList extends Activity {
 
 	 String selectedValue;
+	 String selectedValue1;
 	 String value;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_station_list);
+		
+		final DatabaseHelper db = new DatabaseHelper(this);
 		
 		final Spinner Spinner1 = (Spinner) findViewById(R.id.spinner1);
 		final Spinner Spinner2 = (Spinner) findViewById(R.id.spinner2);
@@ -125,9 +130,43 @@ public class StationList extends Activity {
 	        	String[] Purple_ID = getResources().getStringArray(R.array.Purple_ID);
 	        	String[] Yellow_Li = getResources().getStringArray(R.array.Yellow_Line);
 	        	String[] Yellow_ID = getResources().getStringArray(R.array.Yellow_ID);
+	        	String line = null;
+	        	
+	        	if(selectedValue.equals(Red_Line)){
+	        		line = "Red";
+	        	}
+	        	else if(selectedValue.equals(Blue_Line)){
+	        		line = "Blue";
+	        	}
+	        	else if(selectedValue.equals(Green_Line)){
+	        		line = "Green";
+	        	}
+	        	else if(selectedValue.equals(Orange_Line)){
+	        		line = "Orange";
+	        	}
+	        	else if(selectedValue.equals(Brown_Line)){
+	        		line = "Brown";
+	        	}
+	        	else if(selectedValue.equals(Pink_Line)){
+	        		line = "Pink";
+	        	}
+	        	else if(selectedValue.equals(Purple_Line)){
+	        		line = "Purple";
+	        	}
+	        	else if(selectedValue.equals(Yellow_Line)){
+	        		line = "Yellow";
+	        	}
 
-	        	String selectedValue1 = arg0.getItemAtPosition(arg2).toString();
-	                
+	        	selectedValue1 = arg0.getItemAtPosition(arg2).toString();
+	        	String[] id = {"Id"};
+	        	String query = "StationName = '"+selectedValue1+"' AND "+line+" = 1";
+	            Cursor station = db.executeQuery(id, query);
+	            for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
+		            Log.i("station", station.getString(station.getColumnIndex("Id")));
+		            //value = station.getString(station.getColumnIndex("Id"));
+	            }
+	            //tv12.setText(value);
+	            
 	        	if(selectedValue.equals(Red_Line)){
 	        		Map<String, String> myMap = new HashMap<String, String>();
 	        		for (int i = 0; i < Red_Li.length; i++) {
@@ -236,6 +275,7 @@ public class StationList extends Activity {
     public void sendTest(View a) {
         Intent Intent9 = new Intent(StationList.this, TestStation.class);
         Intent9.putExtra("value", value);
+        Intent9.putExtra("station", selectedValue1);
         startActivityForResult(Intent9, 0); 
     }
 
