@@ -17,6 +17,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class Neareststations extends Activity{
 	String distancea;
     ListView lv;
     static ArrayList<Double> distancetos = new ArrayList<Double>();
+	Map<Double, String> distanceMap = new TreeMap<Double, String>();
     static int mili = 1000;
     
     String station;
@@ -69,6 +71,7 @@ public class Neareststations extends Activity{
 		
         final ProgressDialog progress;
         progress = ProgressDialog.show(this, "Loading Nearest Stations", "Getting your location", true);
+		final DatabaseHelper db = new DatabaseHelper(this);
 	        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 	        // Define a listener that responds to location updates
@@ -170,112 +173,56 @@ public class Neareststations extends Activity{
 
 	        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 	        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
-	        	longitude = location.getLongitude();
-		        latitude = location.getLatitude();
-			        longitude = location.getLongitude();
-			        latitude = location.getLatitude();
-	    	        
-	    	        List<String> Long = Arrays.asList(getResources().getStringArray(R.array.Longitude));
-	    	        List<String> Lat = Arrays.asList(getResources().getStringArray(R.array.Latitude));
-	    	       
-	    	        Iterator<String> iterator = Lat.iterator();
-	    	        Iterator<String> iterator1 = Long.iterator();
-	    	        ArrayList<Double> longitudeArray = new ArrayList<Double>();
-	    	        distancetos.clear();
-	    	        
-	    	        while(iterator.hasNext()){
-	    	        for (int i=0; i<144;i++){
-	    	        
-	    	        double distance = 0;  
-	    	        double lat_end = 0;
-	    	        double lon_end = 0;
+	        	String[] id = {"Lat, Lon, StationName"};
+	        	String query = null;
+	            Cursor station = db.executeQuery(id, query);
 
-	    	        try {
-	    	            lat_end = Double.parseDouble(iterator.next());
-	    	            lon_end = Double.parseDouble(iterator1.next());
-	    	            longitudeArray.add((lon_end));
-	    	        } catch (NumberFormatException e) {
-	    	            Log.v("Main", "Convert to Double Failed : ");
-	    	        }
+	        	ArrayList<Double> longitudeArray = new ArrayList<Double>();
+	        	distancetos.clear();
+	        	distanceMap.clear();
+	        	
+	            for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
+	        		double distance = 0;  
+	        		double lat_end = 0;
+	        		double lon_end = 0;
 
-	    	        Location locationA = new Location("point A");  
-	    	        locationA.setLatitude(latitude);  
-	    	        locationA.setLongitude(longitude);  
+	        		try {
+	        			lat_end = Double.parseDouble(station.getString(station.getColumnIndex("Lat")));
+	        			lon_end = Double.parseDouble(station.getString(station.getColumnIndex("Lon")));
+	        			longitudeArray.add((lon_end));
+	        		} catch (NumberFormatException e) {
+	        			Log.v("Main", "Convert to Double Failed : ");
+	        		}
 
-	    	        Location locationB = new Location("point B");  
-	    	        locationB.setLatitude(lat_end);  
-	    	        locationB.setLongitude(lon_end);  
+	        		Location locationTo = new Location("point B");  
+	        		locationTo.setLatitude(lat_end);  
+	        		locationTo.setLongitude(lon_end);  
 
-	    	        distance = locationA.distanceTo(locationB) * 0.000621371192237334;
-	    	        distance = (double)Math.round(distance * 100) / 100;
-	    	        distancetos.add(distance);
-	    		    }
-	    	        }
-	
-	    	        String[] Stations1 = getResources().getStringArray(R.array.Stations);
-	    	        String[] Longitude1 = getResources().getStringArray(R.array.Longitude);
-	    	        String[] Latitude = getResources().getStringArray(R.array.Latitude);
+	        		distance = location.distanceTo(locationTo) * 0.000621371192237334;
+	        		distance = (double)Math.round(distance * 100) / 100;
+	        		distancetos.add(distance);
+        			distanceMap.put(distance, station.getString(station.getColumnIndex("StationName")));
+	            }
 
-	    	        Map<String, String> myMap = new TreeMap<String, String>();{
-	    	        for (int i = 0; i <144; i++) {
-	    	        	myMap.put(Latitude[i], Stations1[i]);
-	    	        }
-	    	        }
-	    		    
-	    	        int h = -1;
-	    	        Map<Double, String> myMap1 = new TreeMap<Double, String>();{
-	    	        for (Double distance : distancetos){
-	    	            h = h + 1;
-	    	        	myMap1.put(distance, Stations1[h]);
-	    	        }
-	    	        }
-	    	        
-	    	        String value = String.valueOf(myMap1.keySet().toArray()[0]); 
-	    	        station = String.valueOf(myMap1.get(myMap1.keySet().toArray()[0]));
-	    	        distance = value;
-	    	        station1 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[1]));
-	    	        distance1 = String.valueOf(myMap1.keySet().toArray()[1]);
-	    	        station2 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[2]));
-	    	        distance2 = String.valueOf(myMap1.keySet().toArray()[2]);
-	    	        station3 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[3]));
-	    	        distance3 = String.valueOf(myMap1.keySet().toArray()[3]);
-	    	        station4 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[4]));
-	    	        distance4 = String.valueOf(myMap1.keySet().toArray()[4]);
-	    	        station5 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[5]));
-	    	        distance5 = String.valueOf(myMap1.keySet().toArray()[5]);
-	    	        station6 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[6]));
-	    	        distance6 = String.valueOf(myMap1.keySet().toArray()[6]);
-	    	        station7 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[7]));
-	    	        distance7 = String.valueOf(myMap1.keySet().toArray()[7]);
-	    	        station8 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[8]));
-	    	        distance8 = String.valueOf(myMap1.keySet().toArray()[8]);
-	    	        station9 = String.valueOf(myMap1.get(myMap1.keySet().toArray()[9]));
-	    	        distance9 = String.valueOf(myMap1.keySet().toArray()[9]);
-	    	       
-		            Log.i("myMap1", String.valueOf(myMap1));
-		            Log.i("value", String.valueOf(value));
-		            progress.dismiss();
-		            this.takeItBack(null);
+	        	Log.i("distanceMap", String.valueOf(distanceMap));
+	        	progress.dismiss();
+	        	this.takeItBack(null);
 	        }
 	        else {
-	            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 70, locationListener);
-	            Log.i("MYTAG", String.valueOf(location));
+	        	mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 70, locationListener);
+	        	Log.i("MYTAG", String.valueOf(location));
 	        }
         }   
 	
 	public void takeItBack(String result) {
 		Log.i("Take it back", "worked");
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
-   	    objects.add(new CustomObject(station, second, distance));
-   	    objects.add(new CustomObject(station1, second, distance1));
-   	    objects.add(new CustomObject(station2, second, distance2));
-   	    objects.add(new CustomObject(station3, second, distance3));
-   	    objects.add(new CustomObject(station4, second, distance4));
-   	    objects.add(new CustomObject(station5, second, distance5));
-   	    objects.add(new CustomObject(station6, second, distance6));
-   	    objects.add(new CustomObject(station7, second, distance7));
-   	    objects.add(new CustomObject(station8, second, distance8));
-   	    objects.add(new CustomObject(station9, second, distance9));
+        int num = 1;
+        for(Map.Entry<Double, String> entry : distanceMap.entrySet()){
+        	if(num < 11)
+        	    objects.add(new CustomObject(entry.getValue(), second, entry.getKey().toString()));
+        	num++;
+        }
    	    CustomListViewAdapter customAdapter = new CustomListViewAdapter(this, objects);
    	    lv.setAdapter(customAdapter);
    	    customAdapter.notifyDataSetChanged();
