@@ -61,24 +61,24 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
         ListView scrollableView = lv;
         mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
         mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
-        
-	    if(isOnline() == true) {
-	    	new loaddelays().execute();
-	    }
-	    else {
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-	    		public void onClick(DialogInterface dialog, int id) {
-	    			finish();
-	    			Delay.this.overridePendingTransition(0, android.R.anim.fade_out);
-	    		}
-	    	});
-	    	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
-	    	.setTitle("You're not connected");
-	    	AlertDialog dialog = builder.create();
-	    	dialog.show();
-	    }
-	}
+
+        if(isOnline() == true) {
+            new loaddelays().execute();
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                    Delay.this.overridePendingTransition(0, android.R.anim.fade_out);
+                }
+            });
+            builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+                    .setTitle("You're not connected");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
 	
     @Override
     public void takeItBack(String result) {
@@ -97,13 +97,13 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 		    SimpleDateFormat dateFormat3 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
 			try {
 				if (start.length() == 8) {
-					Date myDate = null;
-					myDate = dateFormat.parse(start);
-					formatstart = dateFormat1.format(myDate);
+					Date myDate;
+                    myDate = dateFormat.parse(start);
+                    formatstart = dateFormat1.format(myDate);
 				}
 
 				else {
-					Date myDate1 = null;
+					Date myDate1;
 					myDate1 = dateFormat2.parse(start);
 					formatstart = dateFormat3.format(myDate1);
 				}
@@ -146,15 +146,15 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 			    return null;
 		    }
 
-		    @Override
-		    protected void onPostExecute(String result) {
-			    super.onPostExecute(result);
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
 
-			    Names.clear();
-			    Alerts.clear();
-			    Starts.clear();
+                Names.clear();
+                Alerts.clear();
+                Starts.clear();
 
-			    Elements elem1 = doc.select("Alert");
+                Elements elem1 = doc.select("Alert");
 
                 for (Element div : elem1) {
                     Elements Short = div.select("ShortDescription");
@@ -165,10 +165,10 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
                     Alerts.add(Short);
                     Starts.add(Start);
                 }
-			    pdLoading.dismiss();
-			    Delay.this.takeItBack(result);    
-		    }
-	    }
+                pdLoading.dismiss();
+                Delay.this.takeItBack(result);
+            }
+        }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -194,23 +194,23 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onRefreshStarted(View view) {
-		 if(isOnline() == true){
-             new loaddelays().execute();
-         }
-         else{
-         	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-         	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-         	    public void onClick(DialogInterface dialog, int id) {
+    @Override
+    public void onRefreshStarted(View view) {
+        if(isOnline() == true){
+            new loaddelays().execute();
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
                     // we don't need to do anything here since the user had internet at one time (the origional load)
-         	    }
-         	});
-         	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
-             .setTitle("You're not connected");
-         	AlertDialog dialog = builder.create();
-         	dialog.show();
-         }
+                }
+            });
+            builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
+                    .setTitle("You're not connected");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 		mPullToRefreshAttacher.setRefreshComplete();
 	}
 	

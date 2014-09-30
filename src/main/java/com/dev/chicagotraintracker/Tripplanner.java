@@ -14,7 +14,7 @@ public class Tripplanner extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tripplanner);
 		// Show the Up button in the action bar.
-	    getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override

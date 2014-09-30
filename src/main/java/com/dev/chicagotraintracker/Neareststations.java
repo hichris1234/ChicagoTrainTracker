@@ -22,66 +22,66 @@ import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
 public class Neareststations extends Activity{
-	LocationManager mLocationManager;
-	LocationListener locationListener;
-	
+    LocationManager mLocationManager;
+    LocationListener locationListener;
+
     ListView lv;
-	Map<Double, String> distanceMap = new TreeMap<Double, String>();
+    Map<Double, String> distanceMap = new TreeMap<Double, String>();
     final DatabaseHelper db = new DatabaseHelper(this);
     static int mili = 1000;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.neareststations);
-		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		lv = (ListView) findViewById(R.id.stationslv);
-		
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.neareststations);
+        // Show the Up button in the action bar.
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        lv = (ListView) findViewById(R.id.stationslv);
+
         final ProgressDialog progress;
         progress = ProgressDialog.show(this, "Loading Nearest Stations", "Getting your location", true);
-		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		// Define a listener that responds to location updates
-		locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
+        // Define a listener that responds to location updates
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
                 getLocationInformation(location);
-				progress.dismiss();
-				mLocationManager.removeUpdates(locationListener);
-				Neareststations.this.takeItBack(null);
-			}
+                progress.dismiss();
+                mLocationManager.removeUpdates(locationListener);
+                Neareststations.this.takeItBack(null);
+            }
 
-			public void onStatusChanged(String provider, int status, Bundle extras) {}
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
 
-			public void onProviderEnabled(String provider) {}
+            public void onProviderEnabled(String provider) {}
 
-			public void onProviderDisabled(String provider) {}
-		};
+            public void onProviderDisabled(String provider) {}
+        };
 
-		Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
             getLocationInformation(location);
-			progress.dismiss();
-			this.takeItBack(null);
-		}
-		else {
-			mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 70, locationListener);
-			Log.i("MYTAG", String.valueOf(location));
-		}
-	}   
-	
-	public void takeItBack(String result) {
-		Log.i("Take it back", "worked");
+            progress.dismiss();
+            this.takeItBack(null);
+        }
+        else {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 70, locationListener);
+            Log.i("MYTAG", String.valueOf(location));
+        }
+    }
+
+    public void takeItBack(String result) {
+        Log.i("Take it back", "worked");
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         int num = 1;
         for(Map.Entry<Double, String> entry : distanceMap.entrySet()){
-        	if(num < 11)
-        	    objects.add(new CustomObject(entry.getValue(), null, entry.getKey().toString()));
-        	num++;
+            if(num < 11)
+                objects.add(new CustomObject(entry.getValue(), null, entry.getKey().toString()));
+            num++;
         }
-   	    CustomListViewAdapter customAdapter = new CustomListViewAdapter(this, objects);
-   	    lv.setAdapter(customAdapter);
-   	    customAdapter.notifyDataSetChanged();
+        CustomListViewAdapter customAdapter = new CustomListViewAdapter(this, objects);
+        lv.setAdapter(customAdapter);
+        customAdapter.notifyDataSetChanged();
     }
 
     public void getLocationInformation(Location location) {
@@ -115,33 +115,33 @@ public class Neareststations extends Activity{
         Log.i("distanceMap", String.valueOf(distanceMap));
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.neareststations, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.neareststations, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	@Override
-	protected void onDestroy(){
-		super.onDestroy();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. Use NavUtils to allow users
+                // to navigate up one level in the application structure. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                //
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
         mLocationManager.removeUpdates(locationListener);
-	}
+    }
 }
