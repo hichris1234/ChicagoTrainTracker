@@ -18,6 +18,7 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefres
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -54,12 +55,17 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.delay);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 	    lv = (ListView) findViewById(R.id.lv);
-	    if(isOnline() == true){
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ListView scrollableView = lv;
+        mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+        mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
+        
+	    if(isOnline() == true) {
 	    	new loaddelays().execute();
 	    }
-	    else{
+	    else {
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
 	    		public void onClick(DialogInterface dialog, int id) {
@@ -72,10 +78,6 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 	    	AlertDialog dialog = builder.create();
 	    	dialog.show();
 	    }
-	    
-	    ListView scrollableView = lv;
-	    mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
-	    mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
 	}
 	
     @Override
@@ -153,18 +155,16 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 			    Starts.clear();
 
 			    Elements elem1 = doc.select("Alert");
-			    Iterator<Element> iterator = elem1.iterator();
 
-			    while (iterator.hasNext()) {
-				    Element div = iterator.next();
-				    Elements Short = div.select("ShortDescription");
-				    Elements Impacted = div.select("ImpactedService");
-				    Elements Start = div.select("EventStart");
-				    Elements Name = Impacted.select("ServiceName");
-				    Names.add(Name);
-				    Alerts.add(Short);
-				    Starts.add(Start);
-			    }
+                for (Element div : elem1) {
+                    Elements Short = div.select("ShortDescription");
+                    Elements Impacted = div.select("ImpactedService");
+                    Elements Start = div.select("EventStart");
+                    Elements Name = Impacted.select("ServiceName");
+                    Names.add(Name);
+                    Alerts.add(Short);
+                    Starts.add(Start);
+                }
 			    pdLoading.dismiss();
 			    Delay.this.takeItBack(result);    
 		    }
@@ -202,10 +202,10 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
          else{
          	AlertDialog.Builder builder = new AlertDialog.Builder(this);
          	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-         	           public void onClick(DialogInterface dialog, int id) {
-                           // we don't need to do anything here since the user had internet at one time (the origional load)
-         	           }
-         	       });
+         	    public void onClick(DialogInterface dialog, int id) {
+                    // we don't need to do anything here since the user had internet at one time (the origional load)
+         	    }
+         	});
          	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
              .setTitle("You're not connected");
          	AlertDialog dialog = builder.create();

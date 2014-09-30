@@ -8,14 +8,59 @@
     android:layout_alignParentTop="true" >
 
 <RelativeLayout
-    android:layout_width="606dp"
-    android:layout_height="486dp" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/station"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#FFFB00"
+        android:background="#2B7ACF" />
+
+    <TextView
+        android:id="@+id/legend"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginRight="85dp"
+        android:gravity="center"
+        android:textSize="17dp"
+        android:layout_toRightOf="@+id/legend3"
+        android:layout_below="@id/station"
+        android:text="Destination"
+        android:textColor="#368F13" />
+
+    <TextView
+        android:id="@+id/legend2"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="17dp"
+        android:text="Minutes"
+        android:textColor="#368F13"
+        android:layout_below="@id/station"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/tv1"
+        android:layout_alignStart="@+id/tv1" />
+
+    <TextView
+        android:id="@id/legend3"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/station"
+        android:layout_alignParentLeft="true"
+        android:textSize="17dp"
+        android:text="Line"
+        android:textColor="#368F13" />
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/legend"
         android:layout_toRightOf="@+id/imageView"
         android:layout_marginRight="85dp"
         android:gravity="center"

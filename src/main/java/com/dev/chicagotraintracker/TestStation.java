@@ -5,7 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,9 +19,10 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -42,27 +46,23 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 	ArrayList<Elements> rta = new ArrayList<Elements>();
 	
 	Iterator<Element> iterator;
-	 
-	int count;
-	int times;
+	
+	String stationtext;
 	
 	private PullToRefreshAttacher mPullToRefreshAttacher;
 	
 	public boolean isOnline() {
 	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
-	}
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
             setContentView(R.layout.test_station);
+
             getActionBar().setDisplayHomeAsUpEnabled(true);
-            
             mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
             PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.scroll);
             ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
@@ -97,6 +97,10 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             
             Intent intent = getIntent();
             String value = intent.getExtras().getString("value");
+            stationtext = intent.getExtras().getString("station");
+
+            ActionBar ab = getActionBar();
+            ab.setTitle(stationtext);
 
             myUrl = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=201412abc85d49b2b83f907f9e329eaa&mapid="+value;
         }
@@ -117,52 +121,23 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            
-            TextView tv = (TextView) findViewById(R.id.tv1);
-            TextView tv1 = (TextView) findViewById(R.id.tv);
-            TextView tv2 = (TextView) findViewById(R.id.tv2);
-            TextView tv3 = (TextView) findViewById(R.id.tv3);
-            TextView tv4 = (TextView) findViewById(R.id.tv4);
-            TextView tv5 = (TextView) findViewById(R.id.tv5);
-            TextView tv6 = (TextView) findViewById(R.id.tv6);
-            TextView tv7 = (TextView) findViewById(R.id.tv7);
-            TextView tv8 = (TextView) findViewById(R.id.tv8);
-            TextView tv9 = (TextView) findViewById(R.id.tv9);
-            TextView tv10 = (TextView) findViewById(R.id.tv10);
-            TextView tv11 = (TextView) findViewById(R.id.tv11);
-            TextView tv12 = (TextView) findViewById(R.id.tv12);
-            TextView tv13 = (TextView) findViewById(R.id.tv13);
-            TextView tv14 = (TextView) findViewById(R.id.tv14);
-            TextView tv15 = (TextView) findViewById(R.id.tv15);
-            TextView tv16 = (TextView) findViewById(R.id.tv16);
-            TextView tv17 = (TextView) findViewById(R.id.tv17);
-            TextView tv18 = (TextView) findViewById(R.id.tv18);
-            TextView tv19 = (TextView) findViewById(R.id.tv19);
-            TextView tv20 = (TextView) findViewById(R.id.tv20);
-            TextView tv21 = (TextView) findViewById(R.id.tv21);
-            TextView tv22 = (TextView) findViewById(R.id.tv22);
-            TextView tv23 = (TextView) findViewById(R.id.tv23);
-            TextView tv24 = (TextView) findViewById(R.id.tv24);
-            TextView tv25 = (TextView) findViewById(R.id.tv25);
-            TextView tv26 = (TextView) findViewById(R.id.tv26);
-            TextView tv27 = (TextView) findViewById(R.id.tv27);
-            TextView tv28 = (TextView) findViewById(R.id.tv28);
-            TextView tv29 = (TextView) findViewById(R.id.tv29);
-            ImageView iv = (ImageView) findViewById(R.id.imageView);
-            ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-            ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
-            ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
-            ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
-            ImageView iv5 = (ImageView) findViewById(R.id.imageView5);
-            ImageView iv6 = (ImageView) findViewById(R.id.imageView6);
-            ImageView iv7 = (ImageView) findViewById(R.id.imageView7);
-            ImageView iv8 = (ImageView) findViewById(R.id.imageView8);
-            ImageView iv9 = (ImageView) findViewById(R.id.imageView9);
-            ImageView iv10 = (ImageView) findViewById(R.id.imageView10);
-            ImageView iv11 = (ImageView) findViewById(R.id.imageView11);
-            ImageView iv12 = (ImageView) findViewById(R.id.imageView12);
-            ImageView iv13 = (ImageView) findViewById(R.id.imageView13);
-            ImageView iv14 = (ImageView) findViewById(R.id.imageView14);
+            Map<Integer, Integer[]> textViewMap = new HashMap<Integer, Integer[]>();
+
+            textViewMap.put(0, new Integer[] {R.id.tv, R.id.tv1, R.id.imageView});
+            textViewMap.put(1, new Integer[] {R.id.tv2, R.id.tv3, R.id.imageView1});
+            textViewMap.put(2, new Integer[] {R.id.tv4, R.id.tv5, R.id.imageView2});
+            textViewMap.put(3, new Integer[] {R.id.tv6, R.id.tv7, R.id.imageView3});
+            textViewMap.put(4, new Integer[] {R.id.tv8, R.id.tv9, R.id.imageView4});
+            textViewMap.put(5, new Integer[] {R.id.tv10, R.id.tv11, R.id.imageView5});
+            textViewMap.put(6, new Integer[] {R.id.tv12, R.id.tv13, R.id.imageView6});
+            textViewMap.put(7, new Integer[] {R.id.tv14, R.id.tv15, R.id.imageView7});
+            textViewMap.put(8, new Integer[] {R.id.tv16, R.id.tv17, R.id.imageView8});
+            textViewMap.put(9, new Integer[] {R.id.tv18, R.id.tv19, R.id.imageView9});
+            textViewMap.put(10, new Integer[] {R.id.tv20, R.id.tv21, R.id.imageView10});
+            textViewMap.put(11, new Integer[] {R.id.tv22, R.id.tv23, R.id.imageView11});
+            textViewMap.put(12, new Integer[] {R.id.tv24, R.id.tv25, R.id.imageView12});
+            textViewMap.put(13, new Integer[] {R.id.tv26, R.id.tv27, R.id.imageView13});
+            textViewMap.put(14, new Integer[] {R.id.tv28, R.id.tv29, R.id.imageView14});
             final String Approaching = getString(R.string.Approaching);
             final String min = getString(R.string.min);
             
@@ -227,114 +202,19 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 		    	if(stringrt.contains(getString(R.string.Brown))){
 		    		color = com.dev.chicagotraintracker.R.drawable.brown; 
 		    	}
+                Integer[] textViewInteger = textViewMap.get(num);
+                TextView textView1 = (TextView) findViewById(textViewInteger[0]);
+                TextView textView2 = (TextView) findViewById(textViewInteger[1]);
+                ImageView imageView = (ImageView) findViewById(textViewInteger[2]);
 
-				switch(num){
-				    case 0:
-				    	tv1.setText(destnm);
-				    	iv.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv.setText(Approaching);
-				        }
-				        else{
-				        	tv.setText(dateDif);
-				        }
-				        break;
-				    case 1:
-				    	tv2.setText(destnm);
-				    	iv1.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv3.setText(Approaching);
-				        }
-				        else{
-				        	tv3.setText(dateDif);
-				        }
-				        break;
-				    case 2:
-				    	tv4.setText(destnm);
-				    	iv2.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv5.setText(Approaching);
-				        }
-				        else{
-				        	tv5.setText(dateDif);
-				        }
-				        break;
-				    case 3:
-				    	tv6.setText(destnm);
-				    	iv3.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv7.setText(Approaching);
-				        }
-				        else{
-				        	tv7.setText(dateDif);
-				        }
-				        break;
-				    case 4:
-				    	tv8.setText(destnm);
-				    	iv4.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv9.setText(Approaching);
-				        }
-				        else{
-				        	tv9.setText(dateDif);
-				        }
-				        break;
-				    case 5:
-				    	tv10.setText(destnm);
-				    	iv5.setImageResource(color);
-				        if(dateDif.equals(min)) {
-				        	tv11.setText(Approaching);
-				        }
-				        else{
-				        	tv11.setText(dateDif);
-				        }
-				        break;
-				    case 6:
-				    	tv12.setText(destnm);
-				    	iv6.setImageResource(color);
-				        tv13.setText(dateDif);
-				        break;
-				    case 7:
-				    	tv14.setText(destnm);
-				    	iv7.setImageResource(color);
-				        tv15.setText(dateDif);
-				        break;
-				    case 8:
-				    	tv16.setText(destnm);
-				    	iv8.setImageResource(color);
-				        tv17.setText(dateDif);
-				        break;
-				    case 9:
-				    	tv18.setText(destnm);
-				    	iv9.setImageResource(color);
-				        tv19.setText(dateDif);
-				        break;
-				    case 10:
-				    	tv20.setText(destnm);
-				    	iv10.setImageResource(color);
-				        tv21.setText(dateDif);
-				        break;
-				    case 11:
-				    	tv22.setText(destnm);
-				    	iv11.setImageResource(color);
-				        tv23.setText(dateDif);
-				        break;
-				    case 12:
-				    	tv24.setText(destnm);
-				    	iv12.setImageResource(color);
-				        tv25.setText(dateDif);
-				        break;
-				    case 13:
-				    	tv26.setText(destnm);
-				    	iv13.setImageResource(color);
-				        tv27.setText(dateDif);
-				        break;
-				    case 14:
-				    	tv28.setText(destnm);
-				    	iv14.setImageResource(color);
-				        tv29.setText(dateDif);
-				        break;
-				}
+                textView1.setText(destnm);
+                imageView.setImageResource(color);
+                if(dateDif.equals(min)) {
+                    textView2.setText(Approaching);
+                }
+                else{
+                    textView2.setText(dateDif);
+                }
 			}
             pdLoading.dismiss();
 	    }
@@ -373,7 +253,7 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         	builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
         	           public void onClick(DialogInterface dialog, int id) {
-        	               // we don't need to do anything here since the user had internet at one time (the origional load)
+        	               // we don't need to do anything here since the user had internet at one time (the original load)
         	           }
         	       });
         	builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
@@ -383,5 +263,4 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         }
 		mPullToRefreshAttacher.setRefreshComplete();
 	}
-	
 }

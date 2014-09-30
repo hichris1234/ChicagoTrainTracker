@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,59 +26,26 @@ public class Neareststations extends Activity{
 	LocationListener locationListener;
 	
     ListView lv;
-    static ArrayList<Double> distancetos = new ArrayList<Double>();
 	Map<Double, String> distanceMap = new TreeMap<Double, String>();
+    final DatabaseHelper db = new DatabaseHelper(this);
     static int mili = 1000;
-	
-	@SuppressLint("NewApi")
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.neareststations);
 		// Show the Up button in the action bar.
-		// Action bar requires Honeycomb & up. Version check + ActionBar Sherlock?
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		lv = (ListView) findViewById(R.id.stationslv);
 		
         final ProgressDialog progress;
         progress = ProgressDialog.show(this, "Loading Nearest Stations", "Getting your location", true);
-		final DatabaseHelper db = new DatabaseHelper(this);
 		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		// Define a listener that responds to location updates
 		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
-				String[] id = {"Lat, Lon, StationName"};
-				String query = null;
-				Cursor station = db.executeQuery(id, query);
-
-				distancetos.clear();
-				distanceMap.clear();
-
-				for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
-					double distance = 0;  
-					double lat_end = 0;
-					double lon_end = 0;
-
-					try {
-						lat_end = Double.parseDouble(station.getString(station.getColumnIndex("Lat")));
-						lon_end = Double.parseDouble(station.getString(station.getColumnIndex("Lon")));
-					} catch (NumberFormatException e) {
-						Log.v("Main", "Convert to Double Failed : ");
-					}
-
-					Location locationTo = new Location("point B");  
-					locationTo.setLatitude(lat_end);  
-					locationTo.setLongitude(lon_end);  
-
-					distance = location.distanceTo(locationTo) * 0.000621371192237334;
-					distance = (double)Math.round(distance * 100) / 100;
-					distancetos.add(distance);
-					distanceMap.put(distance, station.getString(station.getColumnIndex("StationName")));
-				}
-
-				Log.i("distanceMap", String.valueOf(distanceMap));
+                getLocationInformation(location);
 				progress.dismiss();
 				mLocationManager.removeUpdates(locationListener);
 				Neareststations.this.takeItBack(null);
@@ -92,36 +60,7 @@ public class Neareststations extends Activity{
 
 		Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
-			String[] id = {"Lat, Lon, StationName"};
-			String query = null;
-			Cursor station = db.executeQuery(id, query);
-
-			distancetos.clear();
-			distanceMap.clear();
-
-			for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
-				double distance = 0;  
-				double lat_end = 0;
-				double lon_end = 0;
-
-				try {
-					lat_end = Double.parseDouble(station.getString(station.getColumnIndex("Lat")));
-					lon_end = Double.parseDouble(station.getString(station.getColumnIndex("Lon")));
-				} catch (NumberFormatException e) {
-					Log.v("Main", "Convert to Double Failed : ");
-				}
-
-				Location locationTo = new Location("point B");  
-				locationTo.setLatitude(lat_end);  
-				locationTo.setLongitude(lon_end);  
-
-				distance = location.distanceTo(locationTo) * 0.000621371192237334;
-				distance = (double)Math.round(distance * 100) / 100;
-				distancetos.add(distance);
-				distanceMap.put(distance, station.getString(station.getColumnIndex("StationName")));
-			}
-
-			Log.i("distanceMap", String.valueOf(distanceMap));
+            getLocationInformation(location);
 			progress.dismiss();
 			this.takeItBack(null);
 		}
@@ -143,6 +82,37 @@ public class Neareststations extends Activity{
    	    CustomListViewAdapter customAdapter = new CustomListViewAdapter(this, objects);
    	    lv.setAdapter(customAdapter);
    	    customAdapter.notifyDataSetChanged();
+    }
+
+    public void getLocationInformation(Location location) {
+        String[] id = {"Lat, Lon, StationName"};
+        String query = null;
+        Cursor station = db.executeQuery(id, query);
+
+        distanceMap.clear();
+
+        for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
+            double distance = 0;
+            double lat_end = 0;
+            double lon_end = 0;
+
+            try {
+                lat_end = Double.parseDouble(station.getString(station.getColumnIndex("Lat")));
+                lon_end = Double.parseDouble(station.getString(station.getColumnIndex("Lon")));
+            } catch (NumberFormatException e) {
+                Log.v("Main", "Convert to Double Failed : ");
+            }
+
+            Location locationTo = new Location("point B");
+            locationTo.setLatitude(lat_end);
+            locationTo.setLongitude(lon_end);
+
+            distance = location.distanceTo(locationTo) * 0.000621371192237334;
+            distance = (double)Math.round(distance * 100) / 100;
+            distanceMap.put(distance, station.getString(station.getColumnIndex("StationName")));
+        }
+
+        Log.i("distanceMap", String.valueOf(distanceMap));
     }
 
 	@Override

@@ -1,8 +1,8 @@
 package com.dev.chicagotraintracker;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
@@ -14,7 +14,7 @@ public class Tripplanner extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tripplanner);
 		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+	    getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
