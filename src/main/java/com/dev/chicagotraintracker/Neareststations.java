@@ -8,9 +8,7 @@ import java.util.TreeMap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,7 +25,7 @@ public class Neareststations extends Activity{
 
     ListView lv;
     Map<Double, String> distanceMap = new TreeMap<Double, String>();
-    final DatabaseHelper db = new DatabaseHelper(this);
+    final DatabaseHelper db = new DatabaseHelper(Neareststations.this);
     static int mili = 1000;
 
     @Override
