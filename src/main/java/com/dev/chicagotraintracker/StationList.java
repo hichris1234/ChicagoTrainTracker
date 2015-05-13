@@ -3,7 +3,6 @@ package com.dev.chicagotraintracker;
 import java.util.Arrays;
 import java.util.List;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
