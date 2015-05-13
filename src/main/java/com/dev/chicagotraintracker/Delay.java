@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,7 +18,6 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefres
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,9 +36,9 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
     private PullToRefreshAttacher mPullToRefreshAttacher;
     String URL;
     Document doc;
-    ArrayList<Elements> Alerts = new ArrayList<Elements>();
-    ArrayList<Elements> Names = new ArrayList<Elements>();
-    ArrayList<Elements> Starts = new ArrayList<Elements>();
+    Elements alerts;
+    Elements names;
+    Elements starts;
     ListView lv;
 
     public boolean isOnline() {
@@ -84,11 +83,11 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
     public void takeItBack(String result) {
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         int num = -1;
-        for(Elements elemalert : Alerts){
+        for(Element elemalert : alerts){
             num++;
             String alert = elemalert.text();
-            String name = Names.get(num).text();
-            String start = Starts.get(num).text();
+            String name = names.get(num).text();
+            String start = starts.get(num).text();
             String formatstart = null;
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -97,15 +96,9 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
             SimpleDateFormat dateFormat3 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
             try {
                 if (start.length() == 8) {
-                    Date myDate;
-                    myDate = dateFormat.parse(start);
-                    formatstart = dateFormat1.format(myDate);
-                }
-
-                else {
-                    Date myDate1;
-                    myDate1 = dateFormat2.parse(start);
-                    formatstart = dateFormat3.format(myDate1);
+                    formatstart = dateFormat1.format(dateFormat.parse(start));
+                } else {
+                    formatstart = dateFormat3.format(dateFormat2.parse(start));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -137,7 +130,6 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 
             @Override
             protected String doInBackground(Void... params) {
-                doc = null;
                 try {
                     doc = Jsoup.connect(URL).userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10").get();
                 } catch (IOException e) {
@@ -150,21 +142,10 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
 
-                Names.clear();
-                Alerts.clear();
-                Starts.clear();
+                names = doc.select("ServiceName");
+                alerts = doc.select("ShortDescription");
+                starts = doc.select("EventStart");
 
-                Elements elem1 = doc.select("Alert");
-
-                for (Element div : elem1) {
-                    Elements Short = div.select("ShortDescription");
-                    Elements Impacted = div.select("ImpactedService");
-                    Elements Start = div.select("EventStart");
-                    Elements Name = Impacted.select("ServiceName");
-                    Names.add(Name);
-                    Alerts.add(Short);
-                    Starts.add(Start);
-                }
                 pdLoading.dismiss();
                 Delay.this.takeItBack(result);
             }
