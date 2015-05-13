@@ -45,10 +45,7 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     @Override
@@ -62,10 +59,9 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
         mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
         mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
 
-        if(isOnline() == true) {
+        if (isOnline()) {
             new loaddelays().execute();
-        }
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -84,7 +80,7 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
     public void takeItBack(String result) {
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         int num = -1;
-        for(Element elemalert : alerts){
+        for (Element elemalert : alerts) {
             num++;
             String alert = elemalert.text();
             String name = names.get(num).text();
@@ -178,10 +174,9 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
 
     @Override
     public void onRefreshStarted(View view) {
-        if(isOnline() == true){
+        if (isOnline()) {
             new loaddelays().execute();
-        }
-        else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
