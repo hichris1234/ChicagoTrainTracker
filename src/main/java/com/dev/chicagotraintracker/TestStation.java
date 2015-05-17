@@ -21,7 +21,6 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -41,12 +40,10 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
     String myUrl;
     Document doc = null;
 
-    ArrayList<Elements> arT = new ArrayList<Elements>();
-    ArrayList<Elements> prT = new ArrayList<Elements>();
-    ArrayList<Elements> DestNm = new ArrayList<Elements>();
-    ArrayList<Elements> rta = new ArrayList<Elements>();
-
-    Iterator<Element> iterator;
+    Elements arT;
+    Elements prT;
+    Elements DestNm;
+    Elements rta;
 
     String stationtext;
 
@@ -68,10 +65,9 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.scroll);
         ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
 
-        if(isOnline() == true){
+        if (isOnline()) {
             new loadtrains().execute();
-        }
-        else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -113,9 +109,6 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Elements elem = null;
-            elem = doc.select("eta");
-            iterator = elem.iterator();
             return null;
         }
 
@@ -142,25 +135,13 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
             final String Approaching = getString(R.string.Approaching);
             final String min = getString(R.string.min);
 
-            arT.clear();
-            prT.clear();
-            DestNm.clear();
-            rta.clear();
-
-            while (iterator.hasNext()) {
-                Element div = iterator.next();
-                Elements arrT = div.select("arrT");
-                arT.add(arrT);
-                Elements prdt = div.select("prdt");
-                prT.add(prdt);
-                Elements destNm = div.select("destNm");
-                DestNm.add(destNm);
-                Elements rt = div.select("rt");
-                rta.add(rt);
-            }
+            arT = doc.select("arrT");
+            prT = doc.select("prdt");
+            DestNm = doc.select("destNm");
+            rta = doc.select("rt");
 
             int num = -1;
-            for(Elements elemnarrt : arT){
+            for(Element elemnarrt : arT){
                 num++;
                 String arrt = elemnarrt.text();
                 String prdtstring = prT.get(num).text();
@@ -175,32 +156,24 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
                     Date date2 = sdf.parse(prdtstring);
                     long dateDiff = (date1.getTime() - date2.getTime())>0 ? (date1.getTime() - date2.getTime()) :(date2.getTime() - date1.getTime());
                     dateDif = sdf1.format(dateDiff);
-                }  catch (ParseException e) {
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-                if(stringrt.contains(getString(R.string.Red))){
+                if (stringrt.contains(getString(R.string.Red))) {
                     color = com.dev.chicagotraintracker.R.drawable.red;
-                }
-                if(stringrt.contains(getString(R.string.Blue))){
+                } else if(stringrt.contains(getString(R.string.Blue))){
                     color = com.dev.chicagotraintracker.R.drawable.blue;
-                }
-                if(stringrt.contains(getString(R.string.Orange))){
+                } else if(stringrt.contains(getString(R.string.Orange))){
                     color = com.dev.chicagotraintracker.R.drawable.orange;
-                }
-                if(stringrt.contains(getString(R.string.Green))){
+                } else if(stringrt.contains(getString(R.string.Green))){
                     color = com.dev.chicagotraintracker.R.drawable.green;
-                }
-                if(stringrt.contains(getString(R.string.Yellow))){
+                } else if(stringrt.contains(getString(R.string.Yellow))){
                     color = com.dev.chicagotraintracker.R.drawable.yellow;
-                }
-                if(stringrt.equals(getString(R.string.Purple))){
+                } else if(stringrt.equals(getString(R.string.Purple))){
                     color = com.dev.chicagotraintracker.R.drawable.purple;
-                }
-                if(stringrt.contains(getString(R.string.Pink))){
+                } else if(stringrt.contains(getString(R.string.Pink))){
                     color = com.dev.chicagotraintracker.R.drawable.pink;
-                }
-                if(stringrt.contains(getString(R.string.Brown))){
+                } else if(stringrt.contains(getString(R.string.Brown))){
                     color = com.dev.chicagotraintracker.R.drawable.brown;
                 }
                 Integer[] textViewInteger = textViewMap.get(num);
@@ -210,10 +183,9 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 
                 textView1.setText(destnm);
                 imageView.setImageResource(color);
-                if(dateDif.equals(min)) {
+                if (dateDif.equals(min)) {
                     textView2.setText(Approaching);
-                }
-                else{
+                } else {
                     textView2.setText(dateDif);
                 }
             }
@@ -247,10 +219,9 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 
     @Override
     public void onRefreshStarted(View view) {
-        if(isOnline() == true){
+        if (isOnline()) {
             new loadtrains().execute();
-        }
-        else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
