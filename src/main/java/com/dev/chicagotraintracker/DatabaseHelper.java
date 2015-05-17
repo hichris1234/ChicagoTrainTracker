@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         qb.setTables(sqlTables);
         Cursor c = qb.query(db, sqlSelect, selection, null, null, null, null);
         c.moveToFirst();
+        db.close();
         return c;
     }
 }
