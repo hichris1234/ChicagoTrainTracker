@@ -12,15 +12,9 @@ public class CustomObject {
         this.prop3 = prop3;
     }
 
-    public String getProp1() {
-        return prop1;
-    }
+    public String getProp1() { return prop1; }
 
-    public String getProp2() {
-       return prop2;
-    }
+    public String getProp2() { return prop2; }
     
-    public String getProp3() {
-        return prop3;
-     }
+    public String getProp3() { return prop3; }
 }

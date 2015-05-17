@@ -38,9 +38,9 @@ public class CustomListViewAdapter extends BaseAdapter {
 	   }
 
 
-public View getView(int position, View convertView, ViewGroup parent) {
-	      ViewHolder holder = null;
-	      if(convertView == null) {
+       public View getView(int position, View convertView, ViewGroup parent) {
+	      ViewHolder holder;
+	      if (convertView == null) {
 	          holder = new ViewHolder();
 	          convertView = inflater.inflate(R.layout.list_item, parent, false);
 	          holder.textView1 = (TextView) convertView.findViewById(R.id.title);
@@ -55,4 +55,4 @@ public View getView(int position, View convertView, ViewGroup parent) {
 	      holder.textView3.setText(objects.get(position).getProp3());
 	      return convertView;
 	   }
-	}
+}
