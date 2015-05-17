@@ -1,5 +1,6 @@
 package com.dev.chicagotraintracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,59 +45,46 @@ public class StationList extends Activity {
         TextView tv0 = (TextView) findViewById(R.id.tv0);
         final TextView tv11 = (TextView) findViewById(R.id.tv11);
         final TextView tv12 = (TextView) findViewById(R.id.tv12);
+        final ArrayList<String> RedLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Red_Line)));
+        final ArrayList<String> BlueLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Blue_Line)));
+        final ArrayList<String> GreenLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Green_Line)));
+        final ArrayList<String> OrangeLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Orange_Line)));
+        final ArrayList<String> BrownLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Brown_Line)));
+        final ArrayList<String> PinkLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Pink_Line)));
+        final ArrayList<String> PurpleLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Purple_Line)));
+        final ArrayList<String> YellowLin = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.Yellow_Line)));
 
         tv0.setText(Red_Line);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(StationList.this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        Spinner2.setAdapter(adapter);
 
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Spinner2.setAdapter(null);
-
-                List<String> RedLin = Arrays.asList(getResources().getStringArray(R.array.Red_Line));
-                List<String> BlueLin = Arrays.asList(getResources().getStringArray(R.array.Blue_Line));
-                List<String> GreenLin = Arrays.asList(getResources().getStringArray(R.array.Green_Line));
-                List<String> OrangeLin = Arrays.asList(getResources().getStringArray(R.array.Orange_Line));
-                List<String> BrownLin = Arrays.asList(getResources().getStringArray(R.array.Brown_Line));
-                List<String> PinkLin = Arrays.asList(getResources().getStringArray(R.array.Pink_Line));
-                List<String> PurpleLin = Arrays.asList(getResources().getStringArray(R.array.Purple_Line));
-                List<String> YellowLin = Arrays.asList(getResources().getStringArray(R.array.Yellow_Line));
+                adapter.clear();
 
                 selectedValue = arg0.getItemAtPosition(arg2).toString();
                 tv11.setText(selectedValue);
                 if(selectedValue.equals(Red_Line)){
-                    ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,RedLin);
-                    Spinner2.setAdapter(firstAdapter);
+                    adapter.addAll(RedLin);
+                } else if(selectedValue.equals(Blue_Line)){
+                    adapter.addAll(BlueLin);
+                } else if(selectedValue.equals(Green_Line)){
+                    adapter.addAll(GreenLin);
+                } else if(selectedValue.equals(Orange_Line)){
+                    adapter.addAll(OrangeLin);
+                } else if(selectedValue.equals(Brown_Line)){
+                    adapter.addAll(BrownLin);
+                } else if(selectedValue.equals(Pink_Line)){
+                    adapter.addAll(PinkLin);
+                } else if(selectedValue.equals(Purple_Line)){
+                    adapter.addAll(PurpleLin);
+                } else if(selectedValue.equals(Yellow_Line)){
+                    adapter.addAll(YellowLin);
                 }
-                else if(selectedValue.equals(Blue_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BlueLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Green_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,GreenLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Orange_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,OrangeLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Brown_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,BrownLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Pink_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PinkLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Purple_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,PurpleLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
-                else if(selectedValue.equals(Yellow_Line)){
-                    ArrayAdapter<String> SecondAdapter = new ArrayAdapter<String>(StationList.this,android.R.layout.simple_spinner_dropdown_item,YellowLin);
-                    Spinner2.setAdapter(SecondAdapter);
-                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
