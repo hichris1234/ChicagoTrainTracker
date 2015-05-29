@@ -3,20 +3,13 @@ package com.dev.chicagotraintracker;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
-
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -29,17 +22,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
-public class TestStation extends Activity implements PullToRefreshAttacher.OnRefreshListener {
-    String myUrl;
-    Document doc = null;
-
+public class TestStation extends Activity {
     Elements arT;
     Elements prT;
     Elements DestNm;
@@ -47,7 +39,8 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
 
     String stationtext;
 
-    private PullToRefreshAttacher mPullToRefreshAttacher;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    SparseArray<Integer[]> textViewMap = new SparseArray<>();
 
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -55,24 +48,20 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_station);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
-        PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.scroll);
-        ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
-
+    void checkAndExecuteIfOnline (final boolean hadInternet) {
         if (isOnline()) {
             new loadtrains().execute();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    finish();
-                    TestStation.this.overridePendingTransition(0, android.R.anim.fade_out);
+                    if (hadInternet) {
+                        // we don't need to do anything here since the user had internet at one time (the original load)
+                    }
+                    else {
+                        finish();
+                        TestStation.this.overridePendingTransition(0, android.R.anim.fade_out);
+                    }
                 }
             });
             builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
@@ -82,8 +71,42 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         }
     }
 
-    class loadtrains extends AsyncTask<Void, Void, Void> {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_station);
+        textViewMap.put(0, new Integer[] {R.id.tv, R.id.tv1, R.id.imageView});
+        textViewMap.put(1, new Integer[] {R.id.tv2, R.id.tv3, R.id.imageView1});
+        textViewMap.put(2, new Integer[] {R.id.tv4, R.id.tv5, R.id.imageView2});
+        textViewMap.put(3, new Integer[] {R.id.tv6, R.id.tv7, R.id.imageView3});
+        textViewMap.put(4, new Integer[] {R.id.tv8, R.id.tv9, R.id.imageView4});
+        textViewMap.put(5, new Integer[] {R.id.tv10, R.id.tv11, R.id.imageView5});
+        textViewMap.put(6, new Integer[] {R.id.tv12, R.id.tv13, R.id.imageView6});
+        textViewMap.put(7, new Integer[] {R.id.tv14, R.id.tv15, R.id.imageView7});
+        textViewMap.put(8, new Integer[] {R.id.tv16, R.id.tv17, R.id.imageView8});
+        textViewMap.put(9, new Integer[] {R.id.tv18, R.id.tv19, R.id.imageView9});
+        textViewMap.put(10, new Integer[] {R.id.tv20, R.id.tv21, R.id.imageView10});
+        textViewMap.put(11, new Integer[] {R.id.tv22, R.id.tv23, R.id.imageView11});
+        textViewMap.put(12, new Integer[] {R.id.tv24, R.id.tv25, R.id.imageView12});
+        textViewMap.put(13, new Integer[] {R.id.tv26, R.id.tv27, R.id.imageView13});
+        textViewMap.put(14, new Integer[] {R.id.tv28, R.id.tv29, R.id.imageView14});
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                checkAndExecuteIfOnline(true);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        checkAndExecuteIfOnline(false);
+    }
+
+    class loadtrains extends AsyncTask<Void, Void, Void> {
+        String myUrl;
+        Document doc = null;
         ProgressDialog pdLoading = new ProgressDialog(TestStation.this);
 
         @Override
@@ -115,23 +138,6 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            Map<Integer, Integer[]> textViewMap = new HashMap<Integer, Integer[]>();
-
-            textViewMap.put(0, new Integer[] {R.id.tv, R.id.tv1, R.id.imageView});
-            textViewMap.put(1, new Integer[] {R.id.tv2, R.id.tv3, R.id.imageView1});
-            textViewMap.put(2, new Integer[] {R.id.tv4, R.id.tv5, R.id.imageView2});
-            textViewMap.put(3, new Integer[] {R.id.tv6, R.id.tv7, R.id.imageView3});
-            textViewMap.put(4, new Integer[] {R.id.tv8, R.id.tv9, R.id.imageView4});
-            textViewMap.put(5, new Integer[] {R.id.tv10, R.id.tv11, R.id.imageView5});
-            textViewMap.put(6, new Integer[] {R.id.tv12, R.id.tv13, R.id.imageView6});
-            textViewMap.put(7, new Integer[] {R.id.tv14, R.id.tv15, R.id.imageView7});
-            textViewMap.put(8, new Integer[] {R.id.tv16, R.id.tv17, R.id.imageView8});
-            textViewMap.put(9, new Integer[] {R.id.tv18, R.id.tv19, R.id.imageView9});
-            textViewMap.put(10, new Integer[] {R.id.tv20, R.id.tv21, R.id.imageView10});
-            textViewMap.put(11, new Integer[] {R.id.tv22, R.id.tv23, R.id.imageView11});
-            textViewMap.put(12, new Integer[] {R.id.tv24, R.id.tv25, R.id.imageView12});
-            textViewMap.put(13, new Integer[] {R.id.tv26, R.id.tv27, R.id.imageView13});
-            textViewMap.put(14, new Integer[] {R.id.tv28, R.id.tv29, R.id.imageView14});
             final String Approaching = getString(R.string.Approaching);
             final String min = getString(R.string.min);
 
@@ -159,6 +165,7 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                Log.i("text", stringrt);
                 if (stringrt.contains(getString(R.string.Red))) {
                     color = com.dev.chicagotraintracker.R.drawable.red;
                 } else if(stringrt.contains(getString(R.string.Blue))){
@@ -215,24 +222,5 @@ public class TestStation extends Activity implements PullToRefreshAttacher.OnRef
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onRefreshStarted(View view) {
-        if (isOnline()) {
-            new loadtrains().execute();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // we don't need to do anything here since the user had internet at one time (the original load)
-                }
-            });
-            builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
-                    .setTitle("You're not connected");
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        mPullToRefreshAttacher.setRefreshComplete();
     }
 }
