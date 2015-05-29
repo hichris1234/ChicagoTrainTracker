@@ -5,16 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
-
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefreshListener;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -25,16 +21,16 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
-public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListener{
+public class Delay extends Activity {
 
-    private PullToRefreshAttacher mPullToRefreshAttacher;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     String URL;
     Document doc;
     Elements alerts;
@@ -48,25 +44,20 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.delay);
-        lv = (ListView) findViewById(R.id.lv);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        ListView scrollableView = lv;
-        mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
-        mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
-
+    void checkAndExecuteIfOnline (final boolean hadInternet) {
         if (isOnline()) {
             new loaddelays().execute();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    finish();
-                    Delay.this.overridePendingTransition(0, android.R.anim.fade_out);
+                    if (hadInternet) {
+                        // we don't need to do anything here since the user had internet at one time (the original load)
+                    }
+                    else {
+                        finish();
+                        Delay.this.overridePendingTransition(0, android.R.anim.fade_out);
+                    }
                 }
             });
             builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
@@ -77,6 +68,23 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.delay);
+        lv = (ListView) findViewById(R.id.lv);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                checkAndExecuteIfOnline(true);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        checkAndExecuteIfOnline(false);
+    }
+
     public void takeItBack(String result) {
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         int num = -1;
@@ -138,11 +146,15 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
+                long startTime = System.nanoTime();
 
                 names = doc.select("ServiceName");
                 alerts = doc.select("ShortDescription");
                 starts = doc.select("EventStart");
 
+                long endTime = System.nanoTime();
+                long duration = (endTime - startTime);
+                Log.i("time", String.valueOf(duration));
                 pdLoading.dismiss();
                 Delay.this.takeItBack(result);
             }
@@ -170,25 +182,6 @@ public class Delay extends Activity implements AsyncTaskCallback, OnRefreshListe
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onRefreshStarted(View view) {
-        if (isOnline()) {
-            new loaddelays().execute();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // we don't need to do anything here since the user had internet at one time (the origional load)
-                }
-            });
-            builder.setMessage("You're not connected to the internet. Connect to the internet and try again.")
-                    .setTitle("You're not connected");
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        mPullToRefreshAttacher.setRefreshComplete();
     }
 
 }
