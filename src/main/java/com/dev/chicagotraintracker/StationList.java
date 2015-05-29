@@ -25,6 +25,8 @@ public class StationList extends Activity {
      String selectedValue1;
      String value;
 
+     Cursor station;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +127,7 @@ public class StationList extends Activity {
                 selectedValue1 = arg0.getItemAtPosition(arg2).toString();
                 String[] id = {"Id"};
                 String query = "StationName = '"+selectedValue1+"' AND "+line+" = 1";
-                Cursor station = db.executeQuery(id, query);
+                station = db.executeQuery(id, query);
                 for (station.moveToFirst(); !station.isAfterLast(); station.moveToNext()) {
                     Log.i("station", "Station Name: "+selectedValue1+" Id: "+station.getString(station.getColumnIndex("Id")));
                     value = station.getString(station.getColumnIndex("Id"));
@@ -165,10 +167,10 @@ public class StationList extends Activity {
     }
 
     public void sendTest(View a) {
-        Intent Intent9 = new Intent(StationList.this, TestStation.class);
-        Intent9.putExtra("value", value);
-        Intent9.putExtra("station", selectedValue1);
-        startActivityForResult(Intent9, 0); 
+        Intent intent = new Intent(StationList.this, TestStation.class);
+        intent.putExtra("value", value);
+        intent.putExtra("station", selectedValue1);
+        startActivityForResult(intent, 0);
     }
 
 }
