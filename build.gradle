@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
@@ -22,8 +22,9 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.8'
     compile 'com.android.support:support-v4:22+'
+    compile 'com.android.support:cardview-v7:22.0.+'
+    compile 'com.android.support:recyclerview-v7:22.0.+'
     compile 'org.jsoup:jsoup:1.8.2'
     compile 'com.google.android.gms:play-services:7.0+'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
